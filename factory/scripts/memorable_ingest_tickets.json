@@ -1,0 +1,83 @@
+{
+  "session_id": "factory-cluster-tickets-acmepulse-20260927222345",
+  "task_description": "Cluster AcmePulse Google review themes into deduped problem and feature tickets, write tickets.md, put the backlog into remote GBrain over MCP, and upsert rows into a Notion Factory features database",
+  "harness": "cursor",
+  "tool_calls": [
+    {
+      "name": "Read",
+      "input": {
+        "file_path": "factory/data/themes_acmepulse.json"
+      },
+      "result": {
+        "summary": "Loaded 6 themes including duplicate export and dark-mode clusters"
+      }
+    },
+    {
+      "name": "Write",
+      "input": {
+        "file_path": "factory/tickets.py"
+      },
+      "result": {
+        "summary": "Implemented dedupe + bug\u2192problem / feature\u2192feature ticket minting CLI"
+      }
+    },
+    {
+      "name": "Write",
+      "input": {
+        "file_path": "factory/gbrain_sync.py"
+      },
+      "result": {
+        "summary": "Remote MCP put_page/remember client using GBRAIN_MCP_URL + GBRAIN_TOKEN"
+      }
+    },
+    {
+      "name": "Write",
+      "input": {
+        "file_path": "factory/notion_sync.py"
+      },
+      "result": {
+        "summary": "Idempotent Notion upsert by Ticket ID using NOTION_TOKEN + NOTION_DATABASE_ID"
+      }
+    },
+    {
+      "name": "bash",
+      "input": {
+        "command": "cd factory && uv run tickets --in data/themes_acmepulse.json --out data/tickets_acmepulse.json"
+      },
+      "result": {
+        "exit_code": 0,
+        "summary": "Wrote 4 tickets: export problem, dark mode feature, notifications problem, mobile problem"
+      }
+    },
+    {
+      "name": "bash",
+      "input": {
+        "command": "cd factory && uv run gbrain-sync --put reviews/tickets --search 'AcmePulse tickets export'"
+      },
+      "result": {
+        "exit_code": 0,
+        "summary": "put_page reviews/tickets on https://gbrain.io/mcp; search returned the tickets page"
+      }
+    },
+    {
+      "name": "bash",
+      "input": {
+        "command": "cd factory && uv run notion-sync --in data/tickets_acmepulse.json"
+      },
+      "result": {
+        "exit_code": 0,
+        "summary": "Upserted 4 AcmePulse tickets into Notion Factory features DB (Ticket ID keyed)"
+      }
+    },
+    {
+      "name": "bash",
+      "input": {
+        "command": "test -f memory/company/reviews/tickets.md && wc -l memory/company/reviews/tickets.md"
+      },
+      "result": {
+        "exit_code": 0,
+        "summary": "Verified tickets.md written under company memory"
+      }
+    }
+  ]
+}

@@ -89,6 +89,39 @@ class ThemeSet(BaseModel):
         return self.model_dump(mode="json")
 
 
+class TicketType(str, Enum):
+    PROBLEM = "problem"
+    FEATURE = "feature"
+
+
+class Ticket(BaseModel):
+    id: str
+    type: TicketType
+    title: str
+    statement: str = Field(description="Problem or feature idea only — no implementation")
+    why_it_matters: str
+    priority: int = Field(ge=1, le=5, description="Priority 1–5 (5 = most urgent)")
+    review_count: int = Field(ge=0)
+    evidence_quotes: list[EvidenceQuote] = Field(default_factory=list)
+
+
+class TicketSetMeta(BaseModel):
+    themes_path: str
+    place_name: str
+    model: str
+    minted_at: str
+    input_theme_count: int = 0
+    ticket_count: int = 0
+
+
+class TicketSet(BaseModel):
+    meta: TicketSetMeta
+    tickets: list[Ticket]
+
+    def model_dump_json_ready(self) -> dict[str, Any]:
+        return self.model_dump(mode="json")
+
+
 def utc_now_iso() -> str:
     return datetime.now(timezone.utc).replace(microsecond=0).isoformat()
 

@@ -1,0 +1,164 @@
+{
+  "meta": {
+    "place_name": "PulseBoard HQ (sample)",
+    "rating": 3.8,
+    "total_count": 8,
+    "fetched_at": "2026-09-20T12:00:00+00:00",
+    "place_id": "ChIJsamplePlaceId000000000"
+  },
+  "reviews": [
+    {
+      "id": "sample-rev-001",
+      "corpus": "real_place",
+      "source": "fixture",
+      "place_name": "PulseBoard HQ (sample)",
+      "rating": 5,
+      "text": "Great coworking energy and helpful front desk. Coffee is solid.",
+      "date": "2026-09-12T15:30:00+00:00",
+      "author": "M. Daniels",
+      "likes": 3,
+      "raw": {
+        "snippet": "Great coworking energy and helpful front desk. Coffee is solid.",
+        "rating": 5,
+        "iso_date": "2026-09-12T15:30:00+00:00",
+        "user": { "name": "M. Daniels" },
+        "likes": 3,
+        "review_id": "sample-rev-001",
+        "_note": "Redacted sample shaped like SerpAPI google_maps_reviews"
+      }
+    },
+    {
+      "id": "sample-rev-002",
+      "corpus": "real_place",
+      "source": "fixture",
+      "place_name": "PulseBoard HQ (sample)",
+      "rating": 4,
+      "text": "Clean space, fast Wi‑Fi. Parking can be tight on weekdays.",
+      "date": "2026-09-01T09:12:00+00:00",
+      "author": "Chris P.",
+      "likes": 1,
+      "raw": {
+        "extracted_snippet": { "original": "Clean space, fast Wi‑Fi. Parking can be tight on weekdays." },
+        "rating": 4,
+        "iso_date": "2026-09-01T09:12:00+00:00",
+        "user": { "name": "Chris P." },
+        "likes": 1,
+        "review_id": "sample-rev-002"
+      }
+    },
+    {
+      "id": "sample-rev-003",
+      "corpus": "real_place",
+      "source": "fixture",
+      "place_name": "PulseBoard HQ (sample)",
+      "rating": 2,
+      "text": "Noise from the open floor makes focus work hard after 2pm.",
+      "date": "a month ago",
+      "author": "Anonymous Member",
+      "likes": 5,
+      "raw": {
+        "snippet": "Noise from the open floor makes focus work hard after 2pm.",
+        "rating": 2,
+        "date": "a month ago",
+        "user": { "name": "Anonymous Member" },
+        "likes": 5,
+        "review_id": "sample-rev-003"
+      }
+    },
+    {
+      "id": "sample-rev-004",
+      "corpus": "real_place",
+      "source": "fixture",
+      "place_name": "PulseBoard HQ (sample)",
+      "rating": 5,
+      "text": "Booked a day pass — staff walked me through everything. Will return.",
+      "date": "2026-08-18T18:00:00+00:00",
+      "author": "Priya K.",
+      "likes": 2,
+      "raw": {
+        "snippet": "Booked a day pass — staff walked me through everything. Will return.",
+        "rating": 5,
+        "iso_date": "2026-08-18T18:00:00+00:00",
+        "user": { "name": "Priya K." },
+        "likes": 2,
+        "review_id": "sample-rev-004"
+      }
+    },
+    {
+      "id": "sample-rev-005",
+      "corpus": "real_place",
+      "source": "fixture",
+      "place_name": "PulseBoard HQ (sample)",
+      "rating": 3,
+      "text": "Fine for meetings. Phone booths are often full by mid-morning.",
+      "date": "2026-08-02T11:45:00+00:00",
+      "author": "Jordan Ellis",
+      "likes": 0,
+      "raw": {
+        "snippet": "Fine for meetings. Phone booths are often full by mid-morning.",
+        "rating": 3,
+        "iso_date": "2026-08-02T11:45:00+00:00",
+        "user": { "name": "Jordan Ellis" },
+        "likes": 0,
+        "review_id": "sample-rev-005"
+      }
+    },
+    {
+      "id": "sample-rev-006",
+      "corpus": "real_place",
+      "source": "fixture",
+      "place_name": "PulseBoard HQ (sample)",
+      "rating": 1,
+      "text": "AC was out during our workshop. No heads-up from management.",
+      "date": "3 weeks ago",
+      "author": "Sam R.",
+      "likes": 8,
+      "raw": {
+        "snippet": "AC was out during our workshop. No heads-up from management.",
+        "rating": 1,
+        "date": "3 weeks ago",
+        "user": { "name": "Sam R." },
+        "likes": 8,
+        "review_id": "sample-rev-006"
+      }
+    },
+    {
+      "id": "sample-rev-007",
+      "corpus": "real_place",
+      "source": "fixture",
+      "place_name": "PulseBoard HQ (sample)",
+      "rating": 4,
+      "text": "Community events are worthwhile. Would love later kitchen hours.",
+      "date": "2026-07-22T20:10:00+00:00",
+      "author": "Alex Ngo",
+      "likes": 1,
+      "raw": {
+        "extracted_snippet": { "original": "Community events are worthwhile. Would love later kitchen hours." },
+        "rating": 4,
+        "iso_date": "2026-07-22T20:10:00+00:00",
+        "user": { "name": "Alex Ngo" },
+        "likes": 1,
+        "review_id": "sample-rev-007"
+      }
+    },
+    {
+      "id": "sample-rev-008",
+      "corpus": "real_place",
+      "source": "fixture",
+      "place_name": "PulseBoard HQ (sample)",
+      "rating": 5,
+      "text": "Reliable spot for client demos. Lighting and AV setup are pro.",
+      "date": "2026-07-05T14:00:00+00:00",
+      "author": "Taylor Brooks",
+      "likes": 4,
+      "raw": {
+        "snippet": "Reliable spot for client demos. Lighting and AV setup are pro.",
+        "rating": 5,
+        "iso_date": "2026-07-05T14:00:00+00:00",
+        "user": { "name": "Taylor Brooks" },
+        "likes": 4,
+        "review_id": "sample-rev-008"
+      }
+    }
+  ]
+}

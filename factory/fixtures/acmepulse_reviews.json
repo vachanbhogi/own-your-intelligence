@@ -1,0 +1,1523 @@
+{
+  "meta": {
+    "place_name": "AcmePulse",
+    "rating": 2.4,
+    "total_count": 108,
+    "fetched_at": "2026-09-20T12:00:00+00:00",
+    "place_id": null
+  },
+  "reviews": [
+    {
+      "id": "acmepulse-0001",
+      "corpus": "acmepulse",
+      "source": "fixture",
+      "place_name": "AcmePulse",
+      "rating": 1,
+      "text": "Please add dark mode. After hours in the dashboard my eyes are fried.",
+      "date": "2026-09-18T11:00:00+00:00",
+      "author": "Jordan Lee",
+      "likes": 0,
+      "raw": {
+        "theme": "no_dark_mode"
+      }
+    },
+    {
+      "id": "acmepulse-0002",
+      "corpus": "acmepulse",
+      "source": "fixture",
+      "place_name": "AcmePulse",
+      "rating": 2,
+      "text": "No dark mode in 2026? Every competitor has it. Instant dealbreaker for night work.",
+      "date": "2026-09-17T10:00:00+00:00",
+      "author": "Sam Rivera",
+      "likes": 1,
+      "raw": {
+        "theme": "no_dark_mode"
+      }
+    },
+    {
+      "id": "acmepulse-0003",
+      "corpus": "acmepulse",
+      "source": "fixture",
+      "place_name": "AcmePulse",
+      "rating": 2,
+      "text": "Light theme only is brutal. Dark mode should be table stakes for a SaaS tool.",
+      "date": "2026-09-16T09:00:00+00:00",
+      "author": "Alex Chen",
+      "likes": 2,
+      "raw": {
+        "theme": "no_dark_mode"
+      }
+    },
+    {
+      "id": "acmepulse-0004",
+      "corpus": "acmepulse",
+      "source": "fixture",
+      "place_name": "AcmePulse",
+      "rating": 1,
+      "text": "I switch to dark mode everywhere else. AcmePulse forcing white backgrounds is painful.",
+      "date": "2026-09-15T08:00:00+00:00",
+      "author": "Morgan Patel",
+      "likes": 3,
+      "raw": {
+        "theme": "no_dark_mode"
+      }
+    },
+    {
+      "id": "acmepulse-0005",
+      "corpus": "acmepulse",
+      "source": "fixture",
+      "place_name": "AcmePulse",
+      "rating": 2,
+      "text": "Team works late — without dark mode people just screenshot into Notion instead.",
+      "date": "2026-09-14T07:00:00+00:00",
+      "author": "Casey Brooks",
+      "likes": 4,
+      "raw": {
+        "theme": "no_dark_mode"
+      }
+    },
+    {
+      "id": "acmepulse-0006",
+      "corpus": "acmepulse",
+      "source": "fixture",
+      "place_name": "AcmePulse",
+      "rating": 2,
+      "text": "Dark mode request has been on your roadmap forever. Ship it already.",
+      "date": "2026-09-13T06:00:00+00:00",
+      "author": "Riley Nguyen",
+      "likes": 5,
+      "raw": {
+        "theme": "no_dark_mode"
+      }
+    },
+    {
+      "id": "acmepulse-0007",
+      "corpus": "acmepulse",
+      "source": "fixture",
+      "place_name": "AcmePulse",
+      "rating": 1,
+      "text": "White UI at 11pm is why I cancelled. Bring dark mode and I might return.",
+      "date": "2026-09-12T05:00:00+00:00",
+      "author": "Taylor Kim",
+      "likes": 6,
+      "raw": {
+        "theme": "no_dark_mode"
+      }
+    },
+    {
+      "id": "acmepulse-0008",
+      "corpus": "acmepulse",
+      "source": "fixture",
+      "place_name": "AcmePulse",
+      "rating": 2,
+      "text": "Accessibility fail: no dark theme and the contrast on charts is harsh.",
+      "date": "2026-09-11T04:00:00+00:00",
+      "author": "Jamie Ortiz",
+      "likes": 0,
+      "raw": {
+        "theme": "no_dark_mode"
+      }
+    },
+    {
+      "id": "acmepulse-0009",
+      "corpus": "acmepulse",
+      "source": "fixture",
+      "place_name": "AcmePulse",
+      "rating": 2,
+      "text": "Love the product otherwise but the missing dark mode is embarrassing.",
+      "date": "2026-09-10T03:00:00+00:00",
+      "author": "Avery Scott",
+      "likes": 1,
+      "raw": {
+        "theme": "no_dark_mode"
+      }
+    },
+    {
+      "id": "acmepulse-0010",
+      "corpus": "acmepulse",
+      "source": "fixture",
+      "place_name": "AcmePulse",
+      "rating": 1,
+      "text": "Why is there still no dark mode toggle in settings? Basic UX.",
+      "date": "2026-09-09T02:00:00+00:00",
+      "author": "Quinn Murphy",
+      "likes": 2,
+      "raw": {
+        "theme": "no_dark_mode"
+      }
+    },
+    {
+      "id": "acmepulse-0011",
+      "corpus": "acmepulse",
+      "source": "fixture",
+      "place_name": "AcmePulse",
+      "rating": 1,
+      "text": "CSV export is broken again — file downloads empty or truncates mid-row.",
+      "date": "2026-09-03T12:00:00+00:00",
+      "author": "Reese Alvarez",
+      "likes": 0,
+      "raw": {
+        "theme": "broken_export"
+      }
+    },
+    {
+      "id": "acmepulse-0012",
+      "corpus": "acmepulse",
+      "source": "fixture",
+      "place_name": "AcmePulse",
+      "rating": 2,
+      "text": "Tried to export last month's data and got a 500. Support said 'known issue'.",
+      "date": "2026-09-02T11:00:00+00:00",
+      "author": "Drew Hanson",
+      "likes": 2,
+      "raw": {
+        "theme": "broken_export"
+      }
+    },
+    {
+      "id": "acmepulse-0013",
+      "corpus": "acmepulse",
+      "source": "fixture",
+      "place_name": "AcmePulse",
+      "rating": 1,
+      "text": "Export to Excel corrupts date columns. Unusable for our finance handoff.",
+      "date": "2026-09-01T10:00:00+00:00",
+      "author": "Parker Singh",
+      "likes": 4,
+      "raw": {
+        "theme": "broken_export"
+      }
+    },
+    {
+      "id": "acmepulse-0014",
+      "corpus": "acmepulse",
+      "source": "fixture",
+      "place_name": "AcmePulse",
+      "rating": 2,
+      "text": "Broken export is blocking our weekly board pack. Please fix.",
+      "date": "2026-08-31T09:00:00+00:00",
+      "author": "Cameron Walsh",
+      "likes": 6,
+      "raw": {
+        "theme": "broken_export"
+      }
+    },
+    {
+      "id": "acmepulse-0015",
+      "corpus": "acmepulse",
+      "source": "fixture",
+      "place_name": "AcmePulse",
+      "rating": 1,
+      "text": "PDF export cuts off the last chart every time. Been broken for weeks.",
+      "date": "2026-08-30T08:00:00+00:00",
+      "author": "Blake Torres",
+      "likes": 8,
+      "raw": {
+        "theme": "broken_export"
+      }
+    },
+    {
+      "id": "acmepulse-0016",
+      "corpus": "acmepulse",
+      "source": "fixture",
+      "place_name": "AcmePulse",
+      "rating": 2,
+      "text": "Export button spins forever then fails silently. No error message.",
+      "date": "2026-08-29T07:00:00+00:00",
+      "author": "Hayden Price",
+      "likes": 1,
+      "raw": {
+        "theme": "broken_export"
+      }
+    },
+    {
+      "id": "acmepulse-0017",
+      "corpus": "acmepulse",
+      "source": "fixture",
+      "place_name": "AcmePulse",
+      "rating": 1,
+      "text": "Can't trust exports anymore — numbers don't match the on-screen totals.",
+      "date": "2026-08-28T06:00:00+00:00",
+      "author": "Rowan Ellis",
+      "likes": 3,
+      "raw": {
+        "theme": "broken_export"
+      }
+    },
+    {
+      "id": "acmepulse-0018",
+      "corpus": "acmepulse",
+      "source": "fixture",
+      "place_name": "AcmePulse",
+      "rating": 2,
+      "text": "Bulk export of filtered views ignores the filter. Extremely dangerous.",
+      "date": "2026-08-27T05:00:00+00:00",
+      "author": "Skyler Grant",
+      "likes": 5,
+      "raw": {
+        "theme": "broken_export"
+      }
+    },
+    {
+      "id": "acmepulse-0019",
+      "corpus": "acmepulse",
+      "source": "fixture",
+      "place_name": "AcmePulse",
+      "rating": 1,
+      "text": "Scheduled exports stopped landing in email. Manual export also flaky.",
+      "date": "2026-08-26T04:00:00+00:00",
+      "author": "Emery Cross",
+      "likes": 7,
+      "raw": {
+        "theme": "broken_export"
+      }
+    },
+    {
+      "id": "acmepulse-0020",
+      "corpus": "acmepulse",
+      "source": "fixture",
+      "place_name": "AcmePulse",
+      "rating": 2,
+      "text": "Export is the #1 reason my team wants to switch tools.",
+      "date": "2026-08-25T03:00:00+00:00",
+      "author": "Finley Shaw",
+      "likes": 0,
+      "raw": {
+        "theme": "broken_export"
+      }
+    },
+    {
+      "id": "acmepulse-0021",
+      "corpus": "acmepulse",
+      "source": "fixture",
+      "place_name": "AcmePulse",
+      "rating": 1,
+      "text": "Notifications are insanely noisy. I get pinged for every tiny status change.",
+      "date": "2026-08-19T02:00:00+00:00",
+      "author": "Logan Pierce",
+      "likes": 0,
+      "raw": {
+        "theme": "noisy_notifications"
+      }
+    },
+    {
+      "id": "acmepulse-0022",
+      "corpus": "acmepulse",
+      "source": "fixture",
+      "place_name": "AcmePulse",
+      "rating": 2,
+      "text": "No way to mute digest spam. Inbox is unusable.",
+      "date": "2026-08-18T12:00:00+00:00",
+      "author": "Harper Dane",
+      "likes": 1,
+      "raw": {
+        "theme": "noisy_notifications"
+      }
+    },
+    {
+      "id": "acmepulse-0023",
+      "corpus": "acmepulse",
+      "source": "fixture",
+      "place_name": "AcmePulse",
+      "rating": 2,
+      "text": "Please let me turn off @mention spam from bots. Notification hell.",
+      "date": "2026-08-17T11:00:00+00:00",
+      "author": "Peyton Cole",
+      "likes": 2,
+      "raw": {
+        "theme": "noisy_notifications"
+      }
+    },
+    {
+      "id": "acmepulse-0024",
+      "corpus": "acmepulse",
+      "source": "fixture",
+      "place_name": "AcmePulse",
+      "rating": 1,
+      "text": "Mobile push fires 20 times a day for things I don't care about.",
+      "date": "2026-08-16T10:00:00+00:00",
+      "author": "Sawyer Miles",
+      "likes": 3,
+      "raw": {
+        "theme": "noisy_notifications"
+      }
+    },
+    {
+      "id": "acmepulse-0025",
+      "corpus": "acmepulse",
+      "source": "fixture",
+      "place_name": "AcmePulse",
+      "rating": 2,
+      "text": "Notification preferences look like they work but resets every login.",
+      "date": "2026-08-15T09:00:00+00:00",
+      "author": "Jamie Frost",
+      "likes": 4,
+      "raw": {
+        "theme": "noisy_notifications"
+      }
+    },
+    {
+      "id": "acmepulse-0026",
+      "corpus": "acmepulse",
+      "source": "fixture",
+      "place_name": "AcmePulse",
+      "rating": 2,
+      "text": "Too many emails. I disabled everything and still get 'activity digests'.",
+      "date": "2026-08-14T08:00:00+00:00",
+      "author": "Alex Morgan",
+      "likes": 0,
+      "raw": {
+        "theme": "noisy_notifications"
+      }
+    },
+    {
+      "id": "acmepulse-0027",
+      "corpus": "acmepulse",
+      "source": "fixture",
+      "place_name": "AcmePulse",
+      "rating": 1,
+      "text": "Slack integration double-notifies with in-app alerts. Exhausting.",
+      "date": "2026-08-13T07:00:00+00:00",
+      "author": "Chris Bailey",
+      "likes": 1,
+      "raw": {
+        "theme": "noisy_notifications"
+      }
+    },
+    {
+      "id": "acmepulse-0028",
+      "corpus": "acmepulse",
+      "source": "fixture",
+      "place_name": "AcmePulse",
+      "rating": 2,
+      "text": "Need granular notification controls — per project, per event type.",
+      "date": "2026-08-12T06:00:00+00:00",
+      "author": "Dana Ruiz",
+      "likes": 2,
+      "raw": {
+        "theme": "noisy_notifications"
+      }
+    },
+    {
+      "id": "acmepulse-0029",
+      "corpus": "acmepulse",
+      "source": "fixture",
+      "place_name": "AcmePulse",
+      "rating": 2,
+      "text": "The red badge never clears even after I've read everything.",
+      "date": "2026-08-11T05:00:00+00:00",
+      "author": "Elliot Vance",
+      "likes": 3,
+      "raw": {
+        "theme": "noisy_notifications"
+      }
+    },
+    {
+      "id": "acmepulse-0030",
+      "corpus": "acmepulse",
+      "source": "fixture",
+      "place_name": "AcmePulse",
+      "rating": 1,
+      "text": "Noisy notifications made me uninstall the mobile app.",
+      "date": "2026-08-10T04:00:00+00:00",
+      "author": "Frankie Cho",
+      "likes": 4,
+      "raw": {
+        "theme": "noisy_notifications"
+      }
+    },
+    {
+      "id": "acmepulse-0031",
+      "corpus": "acmepulse",
+      "source": "fixture",
+      "place_name": "AcmePulse",
+      "rating": 2,
+      "text": "Mobile app is missing filters that exist on desktop. Can't do real work on the go.",
+      "date": "2026-08-04T03:00:00+00:00",
+      "author": "Riley Nguyen",
+      "likes": 1,
+      "raw": {
+        "theme": "weak_mobile_filter"
+      }
+    },
+    {
+      "id": "acmepulse-0032",
+      "corpus": "acmepulse",
+      "source": "fixture",
+      "place_name": "AcmePulse",
+      "rating": 2,
+      "text": "Where is the date filter on mobile? Completely missing.",
+      "date": "2026-08-03T02:00:00+00:00",
+      "author": "Taylor Kim",
+      "likes": 2,
+      "raw": {
+        "theme": "weak_mobile_filter"
+      }
+    },
+    {
+      "id": "acmepulse-0033",
+      "corpus": "acmepulse",
+      "source": "fixture",
+      "place_name": "AcmePulse",
+      "rating": 2,
+      "text": "Mobile filters are half-implemented — status filter gone after last update.",
+      "date": "2026-08-02T12:00:00+00:00",
+      "author": "Jamie Ortiz",
+      "likes": 3,
+      "raw": {
+        "theme": "weak_mobile_filter"
+      }
+    },
+    {
+      "id": "acmepulse-0034",
+      "corpus": "acmepulse",
+      "source": "fixture",
+      "place_name": "AcmePulse",
+      "rating": 2,
+      "text": "Can't filter by owner on iOS. Have to wait until I'm at a laptop.",
+      "date": "2026-08-01T11:00:00+00:00",
+      "author": "Avery Scott",
+      "likes": 4,
+      "raw": {
+        "theme": "weak_mobile_filter"
+      }
+    },
+    {
+      "id": "acmepulse-0035",
+      "corpus": "acmepulse",
+      "source": "fixture",
+      "place_name": "AcmePulse",
+      "rating": 2,
+      "text": "The weak mobile filter UI makes the app feel like a toy vs desktop.",
+      "date": "2026-07-31T10:00:00+00:00",
+      "author": "Quinn Murphy",
+      "likes": 5,
+      "raw": {
+        "theme": "weak_mobile_filter"
+      }
+    },
+    {
+      "id": "acmepulse-0036",
+      "corpus": "acmepulse",
+      "source": "fixture",
+      "place_name": "AcmePulse",
+      "rating": 2,
+      "text": "Android filter sheet crashes when I pick more than one tag.",
+      "date": "2026-07-30T09:00:00+00:00",
+      "author": "Reese Alvarez",
+      "likes": 0,
+      "raw": {
+        "theme": "weak_mobile_filter"
+      }
+    },
+    {
+      "id": "acmepulse-0037",
+      "corpus": "acmepulse",
+      "source": "fixture",
+      "place_name": "AcmePulse",
+      "rating": 2,
+      "text": "Please bring desktop-parity filters to mobile. This is 2024-level incomplete.",
+      "date": "2026-07-29T08:00:00+00:00",
+      "author": "Drew Hanson",
+      "likes": 1,
+      "raw": {
+        "theme": "weak_mobile_filter"
+      }
+    },
+    {
+      "id": "acmepulse-0038",
+      "corpus": "acmepulse",
+      "source": "fixture",
+      "place_name": "AcmePulse",
+      "rating": 2,
+      "text": "Search works on mobile but filters don't. Weird gap.",
+      "date": "2026-07-28T07:00:00+00:00",
+      "author": "Parker Singh",
+      "likes": 2,
+      "raw": {
+        "theme": "weak_mobile_filter"
+      }
+    },
+    {
+      "id": "acmepulse-0039",
+      "corpus": "acmepulse",
+      "source": "fixture",
+      "place_name": "AcmePulse",
+      "rating": 2,
+      "text": "Mobile 'filter' only has two options while desktop has twelve.",
+      "date": "2026-07-27T06:00:00+00:00",
+      "author": "Cameron Walsh",
+      "likes": 3,
+      "raw": {
+        "theme": "weak_mobile_filter"
+      }
+    },
+    {
+      "id": "acmepulse-0040",
+      "corpus": "acmepulse",
+      "source": "fixture",
+      "place_name": "AcmePulse",
+      "rating": 2,
+      "text": "Field team can't use AcmePulse because mobile filters are useless.",
+      "date": "2026-07-26T05:00:00+00:00",
+      "author": "Blake Torres",
+      "likes": 4,
+      "raw": {
+        "theme": "weak_mobile_filter"
+      }
+    },
+    {
+      "id": "acmepulse-0041",
+      "corpus": "acmepulse",
+      "source": "fixture",
+      "place_name": "AcmePulse",
+      "rating": 1,
+      "text": "Onboarding wizard skips the SSO step and leaves admins stuck.",
+      "date": "2026-07-20T04:00:00+00:00",
+      "author": "Hayden Price",
+      "likes": 0,
+      "raw": {
+        "theme": "other"
+      }
+    },
+    {
+      "id": "acmepulse-0042",
+      "corpus": "acmepulse",
+      "source": "fixture",
+      "place_name": "AcmePulse",
+      "rating": 3,
+      "text": "Search is laggy once you have more than a few thousand rows.",
+      "date": "2026-07-19T03:00:00+00:00",
+      "author": "Rowan Ellis",
+      "likes": 1,
+      "raw": {
+        "theme": "other"
+      }
+    },
+    {
+      "id": "acmepulse-0043",
+      "corpus": "acmepulse",
+      "source": "fixture",
+      "place_name": "AcmePulse",
+      "rating": 3,
+      "text": "Permissions model is confusing — guests somehow edit shared boards.",
+      "date": "2026-07-18T02:00:00+00:00",
+      "author": "Skyler Grant",
+      "likes": 2,
+      "raw": {
+        "theme": "other"
+      }
+    },
+    {
+      "id": "acmepulse-0044",
+      "corpus": "acmepulse",
+      "source": "fixture",
+      "place_name": "AcmePulse",
+      "rating": 3,
+      "text": "Keyboard shortcuts conflict with browser find on Chrome.",
+      "date": "2026-07-17T12:00:00+00:00",
+      "author": "Emery Cross",
+      "likes": 3,
+      "raw": {
+        "theme": "other"
+      }
+    },
+    {
+      "id": "acmepulse-0045",
+      "corpus": "acmepulse",
+      "source": "fixture",
+      "place_name": "AcmePulse",
+      "rating": 1,
+      "text": "Charts don't update live after edits; need a full refresh.",
+      "date": "2026-07-16T11:00:00+00:00",
+      "author": "Finley Shaw",
+      "likes": 0,
+      "raw": {
+        "theme": "other"
+      }
+    },
+    {
+      "id": "acmepulse-0046",
+      "corpus": "acmepulse",
+      "source": "fixture",
+      "place_name": "AcmePulse",
+      "rating": 3,
+      "text": "Timezone handling is wrong for recurring tasks across DST.",
+      "date": "2026-07-15T10:00:00+00:00",
+      "author": "Logan Pierce",
+      "likes": 1,
+      "raw": {
+        "theme": "other"
+      }
+    },
+    {
+      "id": "acmepulse-0047",
+      "corpus": "acmepulse",
+      "source": "fixture",
+      "place_name": "AcmePulse",
+      "rating": 3,
+      "text": "API rate limits undocumented — integrations keep 429ing.",
+      "date": "2026-07-14T09:00:00+00:00",
+      "author": "Harper Dane",
+      "likes": 2,
+      "raw": {
+        "theme": "other"
+      }
+    },
+    {
+      "id": "acmepulse-0048",
+      "corpus": "acmepulse",
+      "source": "fixture",
+      "place_name": "AcmePulse",
+      "rating": 3,
+      "text": "No audit log for who deleted a report. Compliance nightmare.",
+      "date": "2026-07-13T08:00:00+00:00",
+      "author": "Peyton Cole",
+      "likes": 3,
+      "raw": {
+        "theme": "other"
+      }
+    },
+    {
+      "id": "acmepulse-0049",
+      "corpus": "acmepulse",
+      "source": "fixture",
+      "place_name": "AcmePulse",
+      "rating": 1,
+      "text": "Billing page double-charged us for seats that left last month.",
+      "date": "2026-07-12T07:00:00+00:00",
+      "author": "Sawyer Miles",
+      "likes": 0,
+      "raw": {
+        "theme": "other"
+      }
+    },
+    {
+      "id": "acmepulse-0050",
+      "corpus": "acmepulse",
+      "source": "fixture",
+      "place_name": "AcmePulse",
+      "rating": 3,
+      "text": "Collaboration cursors flicker and make the canvas unusable.",
+      "date": "2026-07-11T06:00:00+00:00",
+      "author": "Jamie Frost",
+      "likes": 1,
+      "raw": {
+        "theme": "other"
+      }
+    },
+    {
+      "id": "acmepulse-0051",
+      "corpus": "acmepulse",
+      "source": "fixture",
+      "place_name": "AcmePulse",
+      "rating": 3,
+      "text": "Templates are outdated and don't match current UI patterns.",
+      "date": "2026-07-10T05:00:00+00:00",
+      "author": "Alex Morgan",
+      "likes": 2,
+      "raw": {
+        "theme": "other"
+      }
+    },
+    {
+      "id": "acmepulse-0052",
+      "corpus": "acmepulse",
+      "source": "fixture",
+      "place_name": "AcmePulse",
+      "rating": 3,
+      "text": "Offline mode promises sync but silently drops local edits.",
+      "date": "2026-07-09T04:00:00+00:00",
+      "author": "Chris Bailey",
+      "likes": 3,
+      "raw": {
+        "theme": "other"
+      }
+    },
+    {
+      "id": "acmepulse-0053",
+      "corpus": "acmepulse",
+      "source": "fixture",
+      "place_name": "AcmePulse",
+      "rating": 1,
+      "text": "Tagging autocomplete freezes with long tag lists.",
+      "date": "2026-07-08T03:00:00+00:00",
+      "author": "Dana Ruiz",
+      "likes": 0,
+      "raw": {
+        "theme": "other"
+      }
+    },
+    {
+      "id": "acmepulse-0054",
+      "corpus": "acmepulse",
+      "source": "fixture",
+      "place_name": "AcmePulse",
+      "rating": 3,
+      "text": "Webhook deliveries fail with no retry UI.",
+      "date": "2026-07-07T02:00:00+00:00",
+      "author": "Elliot Vance",
+      "likes": 1,
+      "raw": {
+        "theme": "other"
+      }
+    },
+    {
+      "id": "acmepulse-0055",
+      "corpus": "acmepulse",
+      "source": "fixture",
+      "place_name": "AcmePulse",
+      "rating": 3,
+      "text": "Admin can't force logout compromised sessions.",
+      "date": "2026-07-06T12:00:00+00:00",
+      "author": "Frankie Cho",
+      "likes": 2,
+      "raw": {
+        "theme": "other"
+      }
+    },
+    {
+      "id": "acmepulse-0056",
+      "corpus": "acmepulse",
+      "source": "fixture",
+      "place_name": "AcmePulse",
+      "rating": 1,
+      "text": "Still no dark mode. Uninstalling until you add it.",
+      "date": "2026-06-30T11:00:00+00:00",
+      "author": "Greta Holm",
+      "likes": 0,
+      "raw": {
+        "theme": "no_dark_mode"
+      }
+    },
+    {
+      "id": "acmepulse-0057",
+      "corpus": "acmepulse",
+      "source": "fixture",
+      "place_name": "AcmePulse",
+      "rating": 2,
+      "text": "Export CSV downloads a 0-byte file on Chrome.",
+      "date": "2026-06-29T10:00:00+00:00",
+      "author": "Hugo Lin",
+      "likes": 1,
+      "raw": {
+        "theme": "broken_export"
+      }
+    },
+    {
+      "id": "acmepulse-0058",
+      "corpus": "acmepulse",
+      "source": "fixture",
+      "place_name": "AcmePulse",
+      "rating": 1,
+      "text": "Notification storm every morning. Mute all should mean mute all.",
+      "date": "2026-06-28T09:00:00+00:00",
+      "author": "Ivy Marsh",
+      "likes": 2,
+      "raw": {
+        "theme": "noisy_notifications"
+      }
+    },
+    {
+      "id": "acmepulse-0059",
+      "corpus": "acmepulse",
+      "source": "fixture",
+      "place_name": "AcmePulse",
+      "rating": 2,
+      "text": "Mobile filter drawer is empty on my Pixel.",
+      "date": "2026-06-27T08:00:00+00:00",
+      "author": "Jules Park",
+      "likes": 3,
+      "raw": {
+        "theme": "weak_mobile_filter"
+      }
+    },
+    {
+      "id": "acmepulse-0060",
+      "corpus": "acmepulse",
+      "source": "fixture",
+      "place_name": "AcmePulse",
+      "rating": 3,
+      "text": "Dark mode please — and make charts readable in it.",
+      "date": "2026-06-26T07:00:00+00:00",
+      "author": "Kai Benton",
+      "likes": 4,
+      "raw": {
+        "theme": "no_dark_mode"
+      }
+    },
+    {
+      "id": "acmepulse-0061",
+      "corpus": "acmepulse",
+      "source": "fixture",
+      "place_name": "AcmePulse",
+      "rating": 1,
+      "text": "Board export to PNG is broken since v3.2.",
+      "date": "2026-06-25T06:00:00+00:00",
+      "author": "Lane Soto",
+      "likes": 5,
+      "raw": {
+        "theme": "broken_export"
+      }
+    },
+    {
+      "id": "acmepulse-0062",
+      "corpus": "acmepulse",
+      "source": "fixture",
+      "place_name": "AcmePulse",
+      "rating": 2,
+      "text": "I get notified when *I* edit my own card. Absurd.",
+      "date": "2026-06-24T05:00:00+00:00",
+      "author": "Mila Trent",
+      "likes": 6,
+      "raw": {
+        "theme": "noisy_notifications"
+      }
+    },
+    {
+      "id": "acmepulse-0063",
+      "corpus": "acmepulse",
+      "source": "fixture",
+      "place_name": "AcmePulse",
+      "rating": 2,
+      "text": "Can't filter by due date on mobile at all.",
+      "date": "2026-06-23T04:00:00+00:00",
+      "author": "Noah Vega",
+      "likes": 7,
+      "raw": {
+        "theme": "weak_mobile_filter"
+      }
+    },
+    {
+      "id": "acmepulse-0064",
+      "corpus": "acmepulse",
+      "source": "fixture",
+      "place_name": "AcmePulse",
+      "rating": 1,
+      "text": "White theme only. My optometrist says hi.",
+      "date": "2026-06-22T03:00:00+00:00",
+      "author": "Omar West",
+      "likes": 0,
+      "raw": {
+        "theme": "no_dark_mode"
+      }
+    },
+    {
+      "id": "acmepulse-0065",
+      "corpus": "acmepulse",
+      "source": "fixture",
+      "place_name": "AcmePulse",
+      "rating": 2,
+      "text": "Excel export turns percentages into strings.",
+      "date": "2026-06-21T02:00:00+00:00",
+      "author": "Priya Nair",
+      "likes": 1,
+      "raw": {
+        "theme": "broken_export"
+      }
+    },
+    {
+      "id": "acmepulse-0066",
+      "corpus": "acmepulse",
+      "source": "fixture",
+      "place_name": "AcmePulse",
+      "rating": 3,
+      "text": "Digest emails are too frequent and too vague.",
+      "date": "2026-06-20T12:00:00+00:00",
+      "author": "Quinn Adler",
+      "likes": 2,
+      "raw": {
+        "theme": "noisy_notifications"
+      }
+    },
+    {
+      "id": "acmepulse-0067",
+      "corpus": "acmepulse",
+      "source": "fixture",
+      "place_name": "AcmePulse",
+      "rating": 1,
+      "text": "Mobile missing the priority filter we rely on.",
+      "date": "2026-06-19T11:00:00+00:00",
+      "author": "Ravi Mehta",
+      "likes": 3,
+      "raw": {
+        "theme": "weak_mobile_filter"
+      }
+    },
+    {
+      "id": "acmepulse-0068",
+      "corpus": "acmepulse",
+      "source": "fixture",
+      "place_name": "AcmePulse",
+      "rating": 2,
+      "text": "Please ship a real dark theme, not a grey wash.",
+      "date": "2026-06-18T10:00:00+00:00",
+      "author": "Sasha Bloom",
+      "likes": 4,
+      "raw": {
+        "theme": "no_dark_mode"
+      }
+    },
+    {
+      "id": "acmepulse-0069",
+      "corpus": "acmepulse",
+      "source": "fixture",
+      "place_name": "AcmePulse",
+      "rating": 1,
+      "text": "Export queue retries three times then dies.",
+      "date": "2026-06-17T09:00:00+00:00",
+      "author": "Talia Cruz",
+      "likes": 5,
+      "raw": {
+        "theme": "broken_export"
+      }
+    },
+    {
+      "id": "acmepulse-0070",
+      "corpus": "acmepulse",
+      "source": "fixture",
+      "place_name": "AcmePulse",
+      "rating": 2,
+      "text": "Push notifications for comments I already saw in Slack.",
+      "date": "2026-06-16T08:00:00+00:00",
+      "author": "Uma Shah",
+      "likes": 6,
+      "raw": {
+        "theme": "noisy_notifications"
+      }
+    },
+    {
+      "id": "acmepulse-0071",
+      "corpus": "acmepulse",
+      "source": "fixture",
+      "place_name": "AcmePulse",
+      "rating": 3,
+      "text": "Filters on phone reset when you rotate the screen.",
+      "date": "2026-06-15T07:00:00+00:00",
+      "author": "Vince Okoye",
+      "likes": 7,
+      "raw": {
+        "theme": "weak_mobile_filter"
+      }
+    },
+    {
+      "id": "acmepulse-0072",
+      "corpus": "acmepulse",
+      "source": "fixture",
+      "place_name": "AcmePulse",
+      "rating": 1,
+      "text": "Night owls need dark mode. Period.",
+      "date": "2026-06-14T06:00:00+00:00",
+      "author": "Wren Hale",
+      "likes": 0,
+      "raw": {
+        "theme": "no_dark_mode"
+      }
+    },
+    {
+      "id": "acmepulse-0073",
+      "corpus": "acmepulse",
+      "source": "fixture",
+      "place_name": "AcmePulse",
+      "rating": 2,
+      "text": "Can't export a single filtered view correctly.",
+      "date": "2026-06-13T05:00:00+00:00",
+      "author": "Xan Brooks",
+      "likes": 1,
+      "raw": {
+        "theme": "broken_export"
+      }
+    },
+    {
+      "id": "acmepulse-0074",
+      "corpus": "acmepulse",
+      "source": "fixture",
+      "place_name": "AcmePulse",
+      "rating": 1,
+      "text": "Too loud. Notification settings are a maze.",
+      "date": "2026-06-12T04:00:00+00:00",
+      "author": "Yara Solis",
+      "likes": 2,
+      "raw": {
+        "theme": "noisy_notifications"
+      }
+    },
+    {
+      "id": "acmepulse-0075",
+      "corpus": "acmepulse",
+      "source": "fixture",
+      "place_name": "AcmePulse",
+      "rating": 2,
+      "text": "Desktop filters >> mobile. Close the gap.",
+      "date": "2026-06-11T03:00:00+00:00",
+      "author": "Zane Keller",
+      "likes": 3,
+      "raw": {
+        "theme": "weak_mobile_filter"
+      }
+    },
+    {
+      "id": "acmepulse-0076",
+      "corpus": "acmepulse",
+      "source": "fixture",
+      "place_name": "AcmePulse",
+      "rating": 3,
+      "text": "Almost cancelled over the missing dark mode alone.",
+      "date": "2026-06-10T02:00:00+00:00",
+      "author": "Jordan Lee",
+      "likes": 4,
+      "raw": {
+        "theme": "no_dark_mode"
+      }
+    },
+    {
+      "id": "acmepulse-0077",
+      "corpus": "acmepulse",
+      "source": "fixture",
+      "place_name": "AcmePulse",
+      "rating": 2,
+      "text": "Support confirmed export bug, no ETA.",
+      "date": "2026-06-09T12:00:00+00:00",
+      "author": "Sam Rivera",
+      "likes": 5,
+      "raw": {
+        "theme": "broken_export"
+      }
+    },
+    {
+      "id": "acmepulse-0078",
+      "corpus": "acmepulse",
+      "source": "fixture",
+      "place_name": "AcmePulse",
+      "rating": 1,
+      "text": "Badge counts lie. Notifications are broken.",
+      "date": "2026-06-08T11:00:00+00:00",
+      "author": "Alex Chen",
+      "likes": 6,
+      "raw": {
+        "theme": "noisy_notifications"
+      }
+    },
+    {
+      "id": "acmepulse-0079",
+      "corpus": "acmepulse",
+      "source": "fixture",
+      "place_name": "AcmePulse",
+      "rating": 2,
+      "text": "Field reps bounce off the weak mobile filters.",
+      "date": "2026-06-07T10:00:00+00:00",
+      "author": "Morgan Patel",
+      "likes": 7,
+      "raw": {
+        "theme": "weak_mobile_filter"
+      }
+    },
+    {
+      "id": "acmepulse-0080",
+      "corpus": "acmepulse",
+      "source": "fixture",
+      "place_name": "AcmePulse",
+      "rating": 1,
+      "text": "Dark mode or we leave at renewal.",
+      "date": "2026-06-06T09:00:00+00:00",
+      "author": "Casey Brooks",
+      "likes": 0,
+      "raw": {
+        "theme": "no_dark_mode"
+      }
+    },
+    {
+      "id": "acmepulse-0081",
+      "corpus": "acmepulse",
+      "source": "fixture",
+      "place_name": "AcmePulse",
+      "rating": 5,
+      "text": "Solid product. Our ops team finally has one place for status.",
+      "date": "2026-06-10T08:00:00+00:00",
+      "author": "Jamie Ortiz",
+      "likes": 0,
+      "raw": {
+        "theme": "praise"
+      }
+    },
+    {
+      "id": "acmepulse-0082",
+      "corpus": "acmepulse",
+      "source": "fixture",
+      "place_name": "AcmePulse",
+      "rating": 4,
+      "text": "Support was fast when we hit an SSO snag. Appreciate it.",
+      "date": "2026-06-08T07:00:00+00:00",
+      "author": "Avery Scott",
+      "likes": 3,
+      "raw": {
+        "theme": "praise"
+      }
+    },
+    {
+      "id": "acmepulse-0083",
+      "corpus": "acmepulse",
+      "source": "fixture",
+      "place_name": "AcmePulse",
+      "rating": 4,
+      "text": "Clean UI and the reporting views are genuinely useful.",
+      "date": "2026-06-06T06:00:00+00:00",
+      "author": "Quinn Murphy",
+      "likes": 6,
+      "raw": {
+        "theme": "praise"
+      }
+    },
+    {
+      "id": "acmepulse-0084",
+      "corpus": "acmepulse",
+      "source": "fixture",
+      "place_name": "AcmePulse",
+      "rating": 5,
+      "text": "Switched from a heavier tool — AcmePulse is faster for day-to-day.",
+      "date": "2026-06-04T05:00:00+00:00",
+      "author": "Reese Alvarez",
+      "likes": 9,
+      "raw": {
+        "theme": "praise"
+      }
+    },
+    {
+      "id": "acmepulse-0085",
+      "corpus": "acmepulse",
+      "source": "fixture",
+      "place_name": "AcmePulse",
+      "rating": 4,
+      "text": "Love the shared dashboards. Stakeholders actually open them.",
+      "date": "2026-06-02T04:00:00+00:00",
+      "author": "Drew Hanson",
+      "likes": 0,
+      "raw": {
+        "theme": "praise"
+      }
+    },
+    {
+      "id": "acmepulse-0086",
+      "corpus": "acmepulse",
+      "source": "fixture",
+      "place_name": "AcmePulse",
+      "rating": 4,
+      "text": "Pricing is fair for what we get. Five stars from our startup.",
+      "date": "2026-05-31T03:00:00+00:00",
+      "author": "Parker Singh",
+      "likes": 3,
+      "raw": {
+        "theme": "praise"
+      }
+    },
+    {
+      "id": "acmepulse-0087",
+      "corpus": "acmepulse",
+      "source": "fixture",
+      "place_name": "AcmePulse",
+      "rating": 5,
+      "text": "Onboarding was smooth and docs are clear.",
+      "date": "2026-05-29T02:00:00+00:00",
+      "author": "Cameron Walsh",
+      "likes": 6,
+      "raw": {
+        "theme": "praise"
+      }
+    },
+    {
+      "id": "acmepulse-0088",
+      "corpus": "acmepulse",
+      "source": "fixture",
+      "place_name": "AcmePulse",
+      "rating": 4,
+      "text": "Integrations with Slack just work for our workflow.",
+      "date": "2026-05-27T12:00:00+00:00",
+      "author": "Blake Torres",
+      "likes": 9,
+      "raw": {
+        "theme": "praise"
+      }
+    },
+    {
+      "id": "acmepulse-0089",
+      "corpus": "acmepulse",
+      "source": "fixture",
+      "place_name": "AcmePulse",
+      "rating": 4,
+      "text": "Reliable enough that we run weekly planning entirely here.",
+      "date": "2026-05-25T11:00:00+00:00",
+      "author": "Hayden Price",
+      "likes": 0,
+      "raw": {
+        "theme": "praise"
+      }
+    },
+    {
+      "id": "acmepulse-0090",
+      "corpus": "acmepulse",
+      "source": "fixture",
+      "place_name": "AcmePulse",
+      "rating": 5,
+      "text": "Great for small teams. Exactly the right amount of features.",
+      "date": "2026-05-23T10:00:00+00:00",
+      "author": "Rowan Ellis",
+      "likes": 3,
+      "raw": {
+        "theme": "praise"
+      }
+    },
+    {
+      "id": "acmepulse-0091",
+      "corpus": "acmepulse",
+      "source": "fixture",
+      "place_name": "AcmePulse",
+      "rating": 4,
+      "text": "The timeline view is excellent for our launch calendar.",
+      "date": "2026-05-21T09:00:00+00:00",
+      "author": "Skyler Grant",
+      "likes": 6,
+      "raw": {
+        "theme": "praise"
+      }
+    },
+    {
+      "id": "acmepulse-0092",
+      "corpus": "acmepulse",
+      "source": "fixture",
+      "place_name": "AcmePulse",
+      "rating": 4,
+      "text": "Finally a tool my non-technical teammates don't complain about.",
+      "date": "2026-05-19T08:00:00+00:00",
+      "author": "Emery Cross",
+      "likes": 9,
+      "raw": {
+        "theme": "praise"
+      }
+    },
+    {
+      "id": "acmepulse-0093",
+      "corpus": "acmepulse",
+      "source": "fixture",
+      "place_name": "AcmePulse",
+      "rating": 5,
+      "text": "Performance has been snappy even with large projects.",
+      "date": "2026-05-17T07:00:00+00:00",
+      "author": "Finley Shaw",
+      "likes": 0,
+      "raw": {
+        "theme": "praise"
+      }
+    },
+    {
+      "id": "acmepulse-0094",
+      "corpus": "acmepulse",
+      "source": "fixture",
+      "place_name": "AcmePulse",
+      "rating": 4,
+      "text": "Appreciate the thoughtful empty states and tips.",
+      "date": "2026-05-15T06:00:00+00:00",
+      "author": "Logan Pierce",
+      "likes": 3,
+      "raw": {
+        "theme": "praise"
+      }
+    },
+    {
+      "id": "acmepulse-0095",
+      "corpus": "acmepulse",
+      "source": "fixture",
+      "place_name": "AcmePulse",
+      "rating": 4,
+      "text": "Would recommend to other SaaS ops teams.",
+      "date": "2026-05-13T05:00:00+00:00",
+      "author": "Harper Dane",
+      "likes": 6,
+      "raw": {
+        "theme": "praise"
+      }
+    },
+    {
+      "id": "acmepulse-0096",
+      "corpus": "acmepulse",
+      "source": "fixture",
+      "place_name": "AcmePulse",
+      "rating": 5,
+      "text": "UI polish is nice — micro-interactions feel intentional.",
+      "date": "2026-05-11T04:00:00+00:00",
+      "author": "Peyton Cole",
+      "likes": 9,
+      "raw": {
+        "theme": "praise"
+      }
+    },
+    {
+      "id": "acmepulse-0097",
+      "corpus": "acmepulse",
+      "source": "fixture",
+      "place_name": "AcmePulse",
+      "rating": 4,
+      "text": "CSV import worked perfectly for our migration.",
+      "date": "2026-05-09T03:00:00+00:00",
+      "author": "Sawyer Miles",
+      "likes": 0,
+      "raw": {
+        "theme": "praise"
+      }
+    },
+    {
+      "id": "acmepulse-0098",
+      "corpus": "acmepulse",
+      "source": "fixture",
+      "place_name": "AcmePulse",
+      "rating": 4,
+      "text": "Role-based access (when it works) is powerful.",
+      "date": "2026-05-07T02:00:00+00:00",
+      "author": "Jamie Frost",
+      "likes": 3,
+      "raw": {
+        "theme": "praise"
+      }
+    },
+    {
+      "id": "acmepulse-0099",
+      "corpus": "acmepulse",
+      "source": "fixture",
+      "place_name": "AcmePulse",
+      "rating": 5,
+      "text": "Mobile is fine for checking status even if filters lag behind.",
+      "date": "2026-05-05T12:00:00+00:00",
+      "author": "Alex Morgan",
+      "likes": 6,
+      "raw": {
+        "theme": "praise"
+      }
+    },
+    {
+      "id": "acmepulse-0100",
+      "corpus": "acmepulse",
+      "source": "fixture",
+      "place_name": "AcmePulse",
+      "rating": 4,
+      "text": "Consistently good releases. Keep shipping.",
+      "date": "2026-05-03T11:00:00+00:00",
+      "author": "Chris Bailey",
+      "likes": 9,
+      "raw": {
+        "theme": "praise"
+      }
+    },
+    {
+      "id": "acmepulse-0101",
+      "corpus": "acmepulse",
+      "source": "fixture",
+      "place_name": "AcmePulse",
+      "rating": 3,
+      "text": "Useful overall but export reliability and missing dark mode keep biting us.",
+      "date": "2026-04-21T10:00:00+00:00",
+      "author": "Quinn Adler",
+      "likes": 0,
+      "raw": {
+        "theme": "mixed"
+      }
+    },
+    {
+      "id": "acmepulse-0102",
+      "corpus": "acmepulse",
+      "source": "fixture",
+      "place_name": "AcmePulse",
+      "rating": 3,
+      "text": "Good bones. Fix notifications and mobile filters and it's a 5.",
+      "date": "2026-04-20T09:00:00+00:00",
+      "author": "Ravi Mehta",
+      "likes": 1,
+      "raw": {
+        "theme": "mixed"
+      }
+    },
+    {
+      "id": "acmepulse-0103",
+      "corpus": "acmepulse",
+      "source": "fixture",
+      "place_name": "AcmePulse",
+      "rating": 4,
+      "text": "Almost perfect — dark mode would make me a raving fan.",
+      "date": "2026-04-19T08:00:00+00:00",
+      "author": "Sasha Bloom",
+      "likes": 2,
+      "raw": {
+        "theme": "mixed"
+      }
+    },
+    {
+      "id": "acmepulse-0104",
+      "corpus": "acmepulse",
+      "source": "fixture",
+      "place_name": "AcmePulse",
+      "rating": 2,
+      "text": "Product idea is great; execution on export and mobile is rough.",
+      "date": "2026-04-18T07:00:00+00:00",
+      "author": "Talia Cruz",
+      "likes": 3,
+      "raw": {
+        "theme": "mixed"
+      }
+    },
+    {
+      "id": "acmepulse-0105",
+      "corpus": "acmepulse",
+      "source": "fixture",
+      "place_name": "AcmePulse",
+      "rating": 3,
+      "text": "We stay because of dashboards, not because of the mobile experience.",
+      "date": "2026-04-17T06:00:00+00:00",
+      "author": "Uma Shah",
+      "likes": 4,
+      "raw": {
+        "theme": "mixed"
+      }
+    },
+    {
+      "id": "acmepulse-0106",
+      "corpus": "acmepulse",
+      "source": "fixture",
+      "place_name": "AcmePulse",
+      "rating": 4,
+      "text": "Solid for desktop workflows. Mobile still feels half-baked.",
+      "date": "2026-04-16T05:00:00+00:00",
+      "author": "Vince Okoye",
+      "likes": 5,
+      "raw": {
+        "theme": "mixed"
+      }
+    },
+    {
+      "id": "acmepulse-0107",
+      "corpus": "acmepulse",
+      "source": "fixture",
+      "place_name": "AcmePulse",
+      "rating": 3,
+      "text": "Love reports. Hate the notification spam.",
+      "date": "2026-04-15T04:00:00+00:00",
+      "author": "Wren Hale",
+      "likes": 6,
+      "raw": {
+        "theme": "mixed"
+      }
+    },
+    {
+      "id": "acmepulse-0108",
+      "corpus": "acmepulse",
+      "source": "fixture",
+      "place_name": "AcmePulse",
+      "rating": 2,
+      "text": "Would rate higher if CSV export worked consistently.",
+      "date": "2026-04-14T03:00:00+00:00",
+      "author": "Xan Brooks",
+      "likes": 7,
+      "raw": {
+        "theme": "mixed"
+      }
+    }
+  ]
+}

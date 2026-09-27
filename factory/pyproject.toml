@@ -1,0 +1,34 @@
+[project]
+name = "feedback-factory"
+version = "0.1.0"
+description = "Google review ingest, theme clustering, and ticket minting for the Feedback → Feature Factory"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "httpx>=0.27.0",
+    "python-dotenv>=1.0.0",
+    "pydantic>=2.0.0",
+]
+
+[project.scripts]
+explore = "explore:main"
+cluster = "cluster:main"
+tickets = "tickets:main"
+gbrain-sync = "gbrain_sync:main"
+notion-sync = "notion_sync:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+# Flat layout: ship modules at the project root
+only-include = ["explore.py", "schema.py", "cluster.py", "tickets.py", "gbrain_sync.py", "notion_sync.py"]
+
+[tool.hatch.build.targets.wheel.force-include]
+"explore.py" = "explore.py"
+"schema.py" = "schema.py"
+"cluster.py" = "cluster.py"
+"tickets.py" = "tickets.py"
+"gbrain_sync.py" = "gbrain_sync.py"
+"notion_sync.py" = "notion_sync.py"

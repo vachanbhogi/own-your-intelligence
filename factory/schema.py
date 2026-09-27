@@ -48,6 +48,47 @@ class ReviewCorpus(BaseModel):
         return self.model_dump(mode="json")
 
 
+class ThemeKind(str, Enum):
+    FEATURE = "feature"
+    BUG = "bug"
+    PRAISE = "praise"
+    OTHER = "other"
+
+
+class EvidenceQuote(BaseModel):
+    review_id: str
+    quote: str
+    rating: int = Field(ge=1, le=5)
+
+
+class Theme(BaseModel):
+    id: str
+    title: str
+    kind: ThemeKind
+    severity: int = Field(ge=1, le=5, description="Priority / severity 1–5 (5 = most urgent)")
+    review_count: int = Field(ge=0)
+    summary: str
+    evidence_quotes: list[EvidenceQuote] = Field(default_factory=list)
+    candidate_action: str = Field(description="What to build or fix")
+
+
+class ThemeSetMeta(BaseModel):
+    corpus_path: str
+    place_name: str
+    model: str
+    clustered_at: str
+    input_count: int = 0
+    used_count: int = 0
+
+
+class ThemeSet(BaseModel):
+    meta: ThemeSetMeta
+    themes: list[Theme]
+
+    def model_dump_json_ready(self) -> dict[str, Any]:
+        return self.model_dump(mode="json")
+
+
 def utc_now_iso() -> str:
     return datetime.now(timezone.utc).replace(microsecond=0).isoformat()
 

@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://harmony.local/contracts/v1/error_response.schema.json",
+  "title": "ErrorResponse",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["code", "message", "request_id", "retryable"],
+  "properties": {
+    "code": { "type": "string", "minLength": 1, "maxLength": 64 },
+    "message": { "type": "string", "minLength": 1, "maxLength": 2000 },
+    "request_id": { "type": "string", "format": "uuid" },
+    "retryable": { "type": "boolean" },
+    "field_errors": {
+      "type": "array",
+      "maxItems": 50,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["field", "message"],
+        "properties": {
+          "field": { "type": "string" },
+          "message": { "type": "string" }
+        }
+      }
+    },
+    "current_version": { "type": "integer" },
+    "operation_id": { "type": "string", "format": "uuid" }
+  }
+}

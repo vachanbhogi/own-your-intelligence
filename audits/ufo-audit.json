@@ -1,0 +1,218 @@
+{
+  "sha": "63ba388ed449ff46c9d70744119dffc85df0fbf8",
+  "branch": "harmony/main",
+  "toolchain": {
+    "python": "3.12.3",
+    "python_requires": ">=3.12",
+    "uv": "0.12.19",
+    "ufo_package_version": "0.1.0",
+    "dbos": "3.0.0",
+    "cargo": "1.83.0",
+    "pytest_timeout_seconds": 120
+  },
+  "build_commands": [
+    "make install",
+    "make build",
+    "make check",
+    "make serve",
+    "make init EMAIL=<email>",
+    "make db"
+  ],
+  "test_commands": [
+    "make test",
+    "make test-one FILE=<path>",
+    "make test-integration",
+    "make test-client"
+  ],
+  "test_results": {
+    "make_install": "pass",
+    "core_tests_test_gates_py": {"passed": 2, "skipped": 1, "failed": 0},
+    "core_tests_access_test_member_authorization_py": {"passed": 58, "skipped": 61, "failed": 0},
+    "core_tests_bundle_config_harness_agent_subset": {"passed": 56, "failed": 0},
+    "core_tests_test_integration_requirements_py": {"passed": 1, "failed": 0},
+    "core_tests_loop_test_turn_lifecycle_py": {"passed": 61, "skipped": 52, "failed": 1, "failure": "TimeoutError sqlite git workspace scan"},
+    "core_tests_test_objects_py": {"passed": 89, "skipped": 1, "failed": 11, "failure": "RuntimeError: no ufo client binary (make build)"},
+    "make_test_full": "not_run",
+    "make_check": "not_run",
+    "notes": "Parallel suite ~307 items with default markers; client and full matrix not exercised."
+  },
+  "extension_registration_seams": [
+    {
+      "file": "core/src/ufo/host/ext/loader.py",
+      "symbols": [
+        "discovered",
+        "discovered_packs",
+        "load_manifests",
+        "_pack_manifests",
+        "migration_locations",
+        "extension_digest",
+        "first_party_distributions",
+        "turn_tools",
+        "turn_subagents",
+        "turn_subagent_grants",
+        "turn_hooks",
+        "validate_ext_tools",
+        "skill_registry"
+      ]
+    },
+    {
+      "file": "core/src/ufo/host/ext/store.py",
+      "symbols": ["ExtensionStore", "pin_for", "read_lockfile", "write_lockfile"]
+    },
+    {
+      "file": "core/src/ufo/runtime/ext/manifest.py",
+      "symbols": ["Manifest", "Pack"]
+    },
+    {
+      "file": "core/src/ufo/serve.py",
+      "symbols": ["serve path: load_manifests(config.pack.name)", "validate_ext_tools", "bindings_from via _launch_jobs"]
+    },
+    {
+      "file": "core/src/ufo/runtime/jobs.py",
+      "symbols": ["bindings_from", "JobRunner"]
+    },
+    {
+      "file": "pyproject.toml",
+      "symbols": ["project.entry-points.ufo.extension", "project.entry-points.ufo.pack"]
+    },
+    {
+      "file": "extensions/sample/ufo_ext_sample/manifest.py",
+      "symbols": ["manifest"],
+      "role": "reference conformance extension"
+    },
+    {
+      "file": "packs/assistant_dev/ufo_pack_assistant.py",
+      "symbols": ["pack"],
+      "role": "default assistant pack"
+    },
+    {
+      "file": "packs/sample_pack/ufo_pack_sample.py",
+      "symbols": ["pack"],
+      "role": "pack seam reference"
+    }
+  ],
+  "durable_turn_seams": [
+    {
+      "file": "core/src/ufo/runtime/queue.py",
+      "symbols": ["turn_workflow", "_execute_turn", "_run_turn", "init_runtime", "_agent_tools"]
+    },
+    {
+      "file": "core/src/ufo/runtime/engine.py",
+      "symbols": ["TurnEngine.run", "_dispatch_step", "_preflight_member_authorizations"]
+    },
+    {
+      "file": "core/src/ufo/runtime/turns/dispatch.py",
+      "symbols": ["dispatch_next_turn"]
+    },
+    {
+      "file": "core/src/ufo/runtime/turns/cancellation.py",
+      "symbols": ["cancel_one_turn"]
+    },
+    {
+      "file": "core/src/ufo/runtime/jobs.py",
+      "symbols": ["TurnDispatcher.run"]
+    },
+    {
+      "file": "core/src/ufo/runtime/surfaces/admission.py",
+      "symbols": ["Admission.invoke", "AdmissionInvoker"]
+    },
+    {
+      "file": "core/src/ufo/runtime/subagents.py",
+      "symbols": ["Subagents.spawn"]
+    },
+    {
+      "file": "core/src/ufo/schema/records.py",
+      "symbols": ["TURN_WORKFLOW_NAME"]
+    },
+    {
+      "file": "core/src/ufo/host/assemble.py",
+      "symbols": ["HostEnvironment.assemble"]
+    }
+  ],
+  "tool_authorization_seams": [
+    {
+      "file": "core/src/ufo/runtime/queue.py",
+      "symbols": ["_agent_tools", "_agent_actions", "_subagent_tools", "_subagent_actions", "with_implied_grants"]
+    },
+    {
+      "file": "core/src/ufo/host/assemble.py",
+      "symbols": ["HostEnvironment.assemble", "HostEnvironment.tools"]
+    },
+    {
+      "file": "core/src/ufo/runtime/tools/registry.py",
+      "symbols": ["ToolDef", "binds_member_authority", "standing_authorization", "side_effecting"]
+    },
+    {
+      "file": "core/src/ufo/runtime/access/member_authorization.py",
+      "symbols": ["MemberAuthorization", "AuthorizationGate", "preflight", "has_pending"]
+    },
+    {
+      "file": "core/src/ufo/runtime/engine.py",
+      "symbols": ["_preflight_member_authorization", "_prepare_dispatch"]
+    },
+    {
+      "file": "core/src/ufo/runtime/tool_bridge.py",
+      "symbols": ["ToolBridge._allowed", "ToolBridge.request"]
+    },
+    {
+      "file": "core/src/ufo/runtime/access/grants.py",
+      "symbols": ["GrantStore", "ConnectionRecorded", "OAuthProvider"]
+    }
+  ],
+  "harmony_extension_points": [
+    {
+      "path": "extensions/harmony/ (proposed)",
+      "entry_point": "pyproject.toml ufo.extension harmony = ufo_ext_harmony.manifest:manifest",
+      "patterns": ["extensions/sample", "extensions/gbrain", "extensions/sources"]
+    },
+    {
+      "path": "packs/harmony/ (proposed)",
+      "entry_point": "pyproject.toml ufo.pack harmony = ufo_pack_harmony:pack",
+      "patterns": ["packs/assistant_dev", "packs/sample_pack"]
+    },
+    {
+      "mechanism": "Manifest.tools",
+      "file": "core/src/ufo/host/ext/loader.py:turn_tools",
+      "use": "start_assignment, get_assignment, cancel_assignment, revise_candidate, domain CRUD tools"
+    },
+    {
+      "mechanism": "Manifest.objects + migrations/",
+      "use": "Harmony domain rows; no ad hoc core SQL"
+    },
+    {
+      "mechanism": "Manifest.jobs",
+      "file": "core/src/ufo/runtime/jobs.py:bindings_from",
+      "use": "Workflow reconciler, QM result inbox, outbox publish"
+    },
+    {
+      "mechanism": "ToolContext + TurnInvoker",
+      "file": "core/src/ufo/runtime/ext/context.py",
+      "use": "Post progress/completion into company conversation without impersonating humans"
+    },
+    {
+      "mechanism": "ctx.spawn / side_effecting idempotency",
+      "file": "core/src/ufo/runtime/tools/context.py",
+      "use": "Only for in-UFO subagents; QM delegation should use HTTP adapter + Harmony tables, not spawn"
+    },
+    {
+      "mechanism": "extensions/gbrain",
+      "use": "Baseline for knowledge source integration; Harmony pack should add gateway tool per handoff"
+    },
+    {
+      "mechanism": "UFO_FIRST_PARTY_DISTRIBUTIONS",
+      "file": "core/src/ufo/host/ext/loader.py:first_party_distributions",
+      "use": "If Harmony extension needs privileged manifest capabilities"
+    }
+  ],
+  "unsupported_assumptions": [
+    "Harmony /internal/harmony/v1 or public /api/v1 routes exist in UFO core",
+    "start_assignment, get_assignment, cancel_assignment tools exist anywhere in tree",
+    "Native UFO-to-QM assignment client or QM outbox consumer",
+    "Harmony tenant_id equals UFO workspace_id without an adapter layer",
+    "Core turn QUEUED outbox equals Harmony business outbox",
+    "QM result ingestion wired to turn/subagent delivery",
+    "extensions/harmony directory or Harmony pack at baseline SHA",
+    "Handoff JSON schemas are generated or enforced in UFO yet",
+    "Full make test / make check green without building client and optional Postgres/Redis/Docker"
+  ]
+}

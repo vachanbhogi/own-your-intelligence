@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://harmony.local/contracts/v1/async_operation.schema.json",
+  "title": "AsyncOperation",
+  "description": "Durable asynchronous operation projection (handoff 06 §12).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "operation_id",
+    "state",
+    "resource_type",
+    "resource_id",
+    "created_at",
+    "updated_at"
+  ],
+  "properties": {
+    "operation_id": {
+      "type": "string",
+      "format": "uuid",
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+    },
+    "state": {
+      "type": "string",
+      "enum": [
+        "accepted",
+        "running",
+        "blocked",
+        "succeeded",
+        "failed",
+        "cancelled"
+      ]
+    },
+    "resource_type": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 64
+    },
+    "resource_id": {
+      "oneOf": [
+        {
+          "type": "string",
+          "format": "uuid",
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+        },
+        { "type": "null" }
+      ]
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "result": {
+      "oneOf": [{ "type": "object" }, { "type": "null" }]
+    },
+    "error": {
+      "oneOf": [{ "$ref": "task_error.schema.json" }, { "type": "null" }]
+    },
+    "status_url": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 2048,
+      "format": "uri"
+    }
+  }
+}

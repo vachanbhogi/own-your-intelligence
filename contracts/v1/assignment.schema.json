@@ -1,0 +1,149 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://harmony.local/contracts/v1/assignment.schema.json",
+  "title": "Assignment",
+  "description": "UFO-to-QM assignment command body (handoff 06 §5, §12).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "assignment_id",
+    "tenant_id",
+    "task_id",
+    "attempt_id",
+    "generation",
+    "task_type",
+    "candidate_id",
+    "candidate_revision",
+    "input_manifest_id",
+    "context_manifest_id",
+    "policy_revision",
+    "deadline_at",
+    "budget",
+    "result_contract",
+    "input_hash"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "1.0"
+    },
+    "assignment_id": {
+      "type": "string",
+      "format": "uuid",
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+    },
+    "tenant_id": {
+      "type": "string",
+      "format": "uuid",
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+    },
+    "task_id": {
+      "type": "string",
+      "format": "uuid",
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+    },
+    "attempt_id": {
+      "type": "string",
+      "format": "uuid",
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+    },
+    "generation": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 2147483647
+    },
+    "task_type": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 64
+    },
+    "candidate_id": {
+      "oneOf": [
+        {
+          "type": "string",
+          "format": "uuid",
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+        },
+        { "type": "null" }
+      ]
+    },
+    "candidate_revision": {
+      "oneOf": [
+        {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 2147483647
+        },
+        { "type": "null" }
+      ]
+    },
+    "input_manifest_id": {
+      "type": "string",
+      "format": "uuid",
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+    },
+    "context_manifest_id": {
+      "type": "string",
+      "format": "uuid",
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+    },
+    "policy_revision": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 2147483647
+    },
+    "deadline_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "budget": {
+      "$ref": "budget.schema.json"
+    },
+    "result_contract": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 64
+    },
+    "input_hash": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$",
+      "description": "SHA-256 hex digest (64 lowercase hex characters)."
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": { "candidate_id": { "type": "null" } },
+        "required": ["candidate_id"]
+      },
+      "then": {
+        "properties": { "candidate_revision": { "type": "null" } }
+      }
+    },
+    {
+      "if": {
+        "properties": { "candidate_revision": { "type": "null" } },
+        "required": ["candidate_revision"]
+      },
+      "then": {
+        "properties": { "candidate_id": { "type": "null" } }
+      }
+    },
+    {
+      "if": {
+        "properties": { "candidate_id": { "type": "string" } },
+        "required": ["candidate_id"]
+      },
+      "then": {
+        "properties": {
+          "candidate_revision": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 2147483647
+          }
+        }
+      }
+    }
+  ]
+}

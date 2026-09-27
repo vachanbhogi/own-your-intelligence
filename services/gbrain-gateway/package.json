@@ -1,0 +1,22 @@
+{
+  "name": "@harmony/gbrain-gateway",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Harmony GBrain gateway (W04 first slice): scoped sources, grants, fail-closed reads",
+  "exports": {
+    ".": "./dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "npm run build && node --test dist/test/*.test.js"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "typescript": "^5.7.2"
+  }
+}

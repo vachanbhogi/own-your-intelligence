@@ -1,0 +1,32 @@
+{
+  "sha": "a5a36675041a85e30b9ff3632f678ba36837aabf",
+  "toolchain": { "language": "TypeScript", "runtime": "node>=22", "package_manager": "npm" },
+  "build_commands": ["npm ci", "npm run typecheck"],
+  "test_commands": ["npm test"],
+  "test_results": "not_run_deps_missing",
+  "admission_seams": [
+    { "file": "src/api/routes/index.ts", "symbol": "rawRoutes", "notes": "Mount new Harmony internal routes" },
+    { "file": "src/swarms/swarm-service.ts", "symbol": "SwarmService.spawn", "notes": "Bounded worker spawn after root session" },
+    { "file": "src/swarms/swarm-fence.ts", "symbol": "assertSwarmRun", "notes": "Existing lease/attempt fence" },
+    { "file": "src/sessions/session-store.ts", "symbol": "SessionStore", "notes": "Root manager session persistence" }
+  ],
+  "sandbox_provider_seams": [
+    { "file": "src/sandbox/sandbox.ts", "symbol": "Sandbox", "notes": "provision/run/teardown primary interface" },
+    { "file": "src/sandbox/sandbox-routing.ts", "symbol": "createSandboxRouter", "notes": "Backend selection" },
+    { "file": "src/sandbox/local-sandbox.ts", "symbol": "provision", "notes": "First-slice local backend" }
+  ],
+  "api_extension_points": [
+    { "file": "src/api/routes/route.ts", "symbol": "run", "notes": "Route execution" },
+    { "file": "plugins/chassis/src/router.ts", "symbol": "findRoute", "notes": "Path matching" },
+    { "file": "src/harmony (new)", "symbol": "assignments", "notes": "Proposed Harmony delegation module" }
+  ],
+  "memory_provider_seams": [
+    { "file": "src/memory/provider-factory.ts", "symbol": "createMcpMemoryProvider", "notes": "MCP external knowledge" },
+    { "file": "src/memory/provider-config.ts", "symbol": "parseMemoryProviderConfig", "notes": "failOpen default true — override for Harmony" }
+  ],
+  "unsupported_assumptions": [
+    "No Harmony assignment API exists yet",
+    "Blank child workspaces require explicit prepare",
+    "Generation fencing across services not native"
+  ]
+}

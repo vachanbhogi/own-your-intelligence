@@ -1,0 +1,89 @@
+{
+  "contract_major": 1,
+  "contract_version": "1.0",
+  "generated_at": "2026-09-27T22:45:00.000Z",
+  "integration_change_id": "harmony-w00-qm-parallel-9490",
+  "repositories": {
+    "qm": {
+      "upstream": "https://github.com/yc-software/qm",
+      "branch": "harmony/main",
+      "sha": "a5a36675041a85e30b9ff3632f678ba36837aabf",
+      "toolchain": {
+        "language": "TypeScript",
+        "runtime": "node >= 22",
+        "package_manager": "npm"
+      },
+      "build_commands": [
+        "npm ci",
+        "npm run typecheck"
+      ],
+      "test_commands": [
+        "npm test"
+      ],
+      "baseline_tests": "not executed in W00 (deps not installed); structure audit complete"
+    },
+    "ufo": {
+      "upstream": "https://github.com/ufo-ai/ufo-core",
+      "branch": "harmony/main",
+      "sha": "63ba388ed449ff46c9d70744119dffc85df0fbf8",
+      "toolchain": {
+        "language": "Python",
+        "runtime": "python >= 3.12",
+        "package_manager": "uv"
+      },
+      "build_commands": [
+        "uv sync"
+      ],
+      "test_commands": [
+        "make test",
+        "uv run pytest"
+      ],
+      "baseline_tests": "not executed in W00 (deps not installed); structure audit complete"
+    },
+    "gbrain": {
+      "upstream": "https://github.com/garrytan/gbrain",
+      "branch": "harmony/main",
+      "sha": "e78f1c38b947b053f3a46881340f74f316be855a",
+      "toolchain": {
+        "language": "TypeScript",
+        "runtime": "bun",
+        "package_manager": "bun"
+      },
+      "build_commands": [
+        "bun install",
+        "bun run build"
+      ],
+      "test_commands": [
+        "bun test"
+      ],
+      "baseline_tests": "not executed in W00 (deps not installed); structure audit complete"
+    }
+  },
+  "contracts_path": "contracts/v1",
+  "contract_fixtures": [
+    "assignment.valid.research.json",
+    "assignment.valid.pm_spec.json",
+    "assignment.invalid.tenant_mismatch.json",
+    "task_result.valid.succeeded.json",
+    "task_result.valid.failed.json",
+    "event.task_accepted.json",
+    "event.task_result_received.json",
+    "tenants.seed.json"
+  ],
+  "seam_map_docs": [
+    "audits/W00-seam-map.md",
+    "audits/qm-seam-map.md",
+    "audits/ufo-seam-map.md",
+    "audits/gbrain-seam-map.md"
+  ],
+  "fixture_ids": [
+    "assignment.valid.research",
+    "assignment.valid.pm_spec",
+    "assignment.invalid.tenant_mismatch",
+    "task_result.valid.succeeded",
+    "task_result.valid.failed",
+    "event.task_accepted",
+    "event.task_result_received",
+    "tenants.seed"
+  ]
+}

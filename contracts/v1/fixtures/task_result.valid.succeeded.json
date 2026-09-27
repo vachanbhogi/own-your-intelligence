@@ -1,0 +1,17 @@
+{
+  "schema_version": "1.0",
+  "task_id": "44444444-4444-4444-8444-444444444444",
+  "attempt_id": "55555555-5555-4555-8555-555555555555",
+  "generation": 1,
+  "outcome": "succeeded",
+  "input_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "result_contract": "research_report.v1",
+  "result_artifact_id": "99999999-9999-4999-8999-999999999999",
+  "artifact_ids": ["99999999-9999-4999-8999-999999999999"],
+  "usage": {
+    "model_micro_usd": 350000,
+    "wall_seconds": 84,
+    "tool_calls": 12
+  },
+  "completed_at": "2026-09-28T18:17:24.000Z"
+}

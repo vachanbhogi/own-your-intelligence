@@ -1,0 +1,36 @@
+{
+  "fixture_id": "tenants.seed",
+  "schema_version": "1.0",
+  "tenants": [
+    {
+      "tenant_id": "33333333-3333-4333-8333-333333333333",
+      "slug": "acme-a",
+      "display_name": "Acme A",
+      "status": "ready",
+      "bindings": {
+        "ufo_workspace_id": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaa1",
+        "qm_deployment_id": "qm-cell-tenant-a",
+        "qm_scope_id": "org:tenant-a",
+        "gbrain_endpoint": "http://gbrain-tenant-a.internal:8080",
+        "gbrain_database": "gbrain_tenant_a",
+        "worker_pool": "worker-pool-tenant-a",
+        "artifact_prefix": "tenants/33333333-3333-4333-8333-333333333333/"
+      }
+    },
+    {
+      "tenant_id": "33333333-3333-4333-8333-333333333334",
+      "slug": "acme-b",
+      "display_name": "Acme B",
+      "status": "ready",
+      "bindings": {
+        "ufo_workspace_id": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaa2",
+        "qm_deployment_id": "qm-cell-tenant-b",
+        "qm_scope_id": "org:tenant-b",
+        "gbrain_endpoint": "http://gbrain-tenant-b.internal:8080",
+        "gbrain_database": "gbrain_tenant_b",
+        "worker_pool": "worker-pool-tenant-b",
+        "artifact_prefix": "tenants/33333333-3333-4333-8333-333333333334/"
+      }
+    }
+  ]
+}

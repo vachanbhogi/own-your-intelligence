@@ -1,0 +1,14 @@
+{
+  "name": "@harmony/contract-tests",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test contract/**/*.test.js",
+    "test:contract": "node --test contract/**/*.test.js"
+  },
+  "devDependencies": {
+    "ajv": "^8.17.1",
+    "ajv-formats": "^3.0.1"
+  }
+}

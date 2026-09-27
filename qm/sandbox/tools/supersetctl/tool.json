@@ -1,0 +1,22 @@
+{
+  "id": "supersetctl",
+  "label": "Superset",
+  "advertise": "supersetctl",
+  "hints": [
+    "supersetctl drives Superset over its MCP API: list hosts/projects, create workspaces, launch coding agents, publish HTML pages.",
+    "Run `supersetctl auth-check` first. The key comes from SUPERSET_API_KEY (process env, .env, or ~/.config/superset/env) and must never be printed or written to a file.",
+    "Run `supersetctl tools-list` before unfamiliar calls to see the exact argument names.",
+    "If `node` is missing, the script cannot run; ask the human rather than improvising HTTP calls with the key."
+  ],
+  "egress": ["api.superset.sh"],
+  "install": {
+    "binary": "supersetctl",
+    "files": [
+      {
+        "from": "supersetctl",
+        "to": "/usr/local/bin/supersetctl",
+        "mode": "0755"
+      }
+    ]
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "name": "own-your-intelligence",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "smoke": "node test/smoke.mjs",
+    "supersetctl": "node qm/sandbox/tools/supersetctl/supersetctl",
+    "host": "bash scripts/start-host.sh"
+  }
+}

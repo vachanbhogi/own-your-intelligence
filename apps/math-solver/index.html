@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Linear Equation Solver</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="card">
+    <h1>Linear Equation Solver</h1>
+    <p class="sub">Solve a linear equation in <em>x</em>. Supports <strong>+ − ×</strong>, powers, and parentheses. Division is not supported yet.</p>
+
+    <form id="solver-form" autocomplete="off">
+      <input id="equation" type="text" placeholder="e.g. 2(x + 3) = 4x - 2" autofocus>
+      <button type="submit">Solve</button>
+    </form>
+
+    <div id="error" class="error" hidden></div>
+
+    <div id="result" class="result" hidden>
+      <div class="solution"></div>
+      <ol class="steps"></ol>
+    </div>
+  </main>
+
+  <script src="solver.js"></script>
+</body>
+</html>

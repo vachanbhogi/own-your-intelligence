@@ -1,0 +1,347 @@
+#!/usr/bin/env node
+import { existsSync, readFileSync } from "node:fs";
+import { homedir } from "node:os";
+import { dirname, join } from "node:path";
+
+const USAGE = `supersetctl — drive the Superset MCP API
+
+Usage:
+  supersetctl auth-check
+  supersetctl tools-list [--json]
+  supersetctl call <tool> ['<json-args>']
+  supersetctl hosts-list
+  supersetctl projects-list
+  supersetctl workspaces-list [--set key=value ...]
+  supersetctl workspaces-create [--set key=value ...] [--project id] [--name n] [--branch b]
+  supersetctl agents-create --workspace <id> --prompt "<spec>" [--model m]
+  supersetctl pages-publish --file <path> [--title t] [--visibility v] [--set key=value ...]
+
+Flags:
+  --set key=value   add one tool argument (value parsed as JSON when valid)
+  --file path       read a string argument value from a file
+  --json            machine-readable output (tools-list)
+
+Environment:
+  SUPERSET_API_KEY   API key from Superset -> Settings -> API Keys (sk_live_...)
+                     also read from .env (searched upward from cwd) or ~/.config/superset/env
+  SUPERSET_MCP_URL   MCP endpoint (default https://api.superset.sh/mcp)
+`;
+
+const FLAG_ALIASES = {
+  workspaces_create: {
+    project: ["projectId", "project"],
+    name: ["name"],
+    branch: ["branch", "baseBranch"],
+    local: ["local"],
+  },
+  agents_create: {
+    workspace: ["workspaceId", "workspace"],
+    prompt: ["prompt", "message", "text", "input", "instructions"],
+    agent: ["agent", "agentId", "agentName"],
+    model: ["model"],
+    effort: ["effort"],
+  },
+  pages_publish: {
+    file: ["html", "content", "document"],
+    title: ["title", "name"],
+    visibility: ["visibility"],
+    workspace: ["workspaceId"],
+    "entry-path": ["entryPath"],
+  },
+};
+
+function parseEnvFile(file) {
+  const out = {};
+  if (!file || !existsSync(file)) return out;
+  for (const line of readFileSync(file, "utf8").split("\n")) {
+    const m = line.match(/^\s*([A-Za-z_][A-Za-z0-9_]*)\s*=\s*(.*)\s*$/);
+    if (!m) continue;
+    let value = m[2];
+    if (
+      (value.startsWith('"') && value.endsWith('"') && value.length > 1) ||
+      (value.startsWith("'") && value.endsWith("'") && value.length > 1)
+    ) {
+      value = value.slice(1, -1);
+    }
+    out[m[1]] = value;
+  }
+  return out;
+}
+
+function findDotEnv() {
+  let dir = process.cwd();
+  for (let i = 0; i < 10; i++) {
+    const candidate = join(dir, ".env");
+    if (existsSync(candidate)) return candidate;
+    const parent = dirname(dir);
+    if (parent === dir) break;
+    dir = parent;
+  }
+  const homeFile = join(homedir(), ".config", "superset", "env");
+  return existsSync(homeFile) ? homeFile : null;
+}
+
+const env = { ...parseEnvFile(findDotEnv()), ...process.env };
+const ENDPOINT = env.SUPERSET_MCP_URL || "https://api.superset.sh/mcp";
+const API_KEY = (env.SUPERSET_API_KEY || "").trim();
+
+let sessionId = null;
+let initialized = false;
+let seq = 0;
+
+function mcpHeaders() {
+  const headers = {
+    "content-type": "application/json",
+    accept: "application/json, text/event-stream",
+  };
+  if (API_KEY) headers.authorization = `Bearer ${API_KEY}`;
+  if (sessionId) headers["mcp-session-id"] = sessionId;
+  return headers;
+}
+
+function parseSse(text, wantId) {
+  const events = [];
+  let dataLines = [];
+  for (const line of text.split(/\r?\n/)) {
+    if (line.startsWith("data:")) {
+      dataLines.push(line.slice(5).replace(/^ /, ""));
+      continue;
+    }
+    if (line === "" && dataLines.length) {
+      events.push(dataLines.join("\n"));
+      dataLines = [];
+    }
+  }
+  if (dataLines.length) events.push(dataLines.join("\n"));
+  const messages = [];
+  for (const raw of events) {
+    try {
+      messages.push(JSON.parse(raw));
+    } catch {
+      // keep only parseable frames
+    }
+  }
+  if (wantId !== undefined) {
+    const hit = messages.find((m) => m && m.id === wantId);
+    if (hit) return hit;
+  }
+  return messages.find((m) => m && (m.result !== undefined || m.error !== undefined)) ?? null;
+}
+
+async function post(payload) {
+  const res = await fetch(ENDPOINT, {
+    method: "POST",
+    headers: mcpHeaders(),
+    body: JSON.stringify(payload),
+    signal: AbortSignal.timeout(120_000),
+  });
+  const sid = res.headers.get("mcp-session-id");
+  if (sid) sessionId = sid;
+  const contentType = res.headers.get("content-type") || "";
+  if (contentType.includes("text/event-stream")) {
+    return parseSse(await res.text(), payload.id);
+  }
+  const text = await res.text();
+  if (!res.ok) throw new Error(`MCP ${res.status}: ${text.slice(0, 600)}`);
+  if (!text) return null;
+  try {
+    return JSON.parse(text);
+  } catch {
+    return parseSse(text, payload.id);
+  }
+}
+
+async function ensureInit() {
+  if (initialized) return;
+  if (!API_KEY) {
+    throw new Error(
+      "SUPERSET_API_KEY is not set — add it to .env (repo root) or ~/.config/superset/env (Superset app -> Settings -> API Keys)",
+    );
+  }
+  const msg = await post({
+    jsonrpc: "2.0",
+    id: ++seq,
+    method: "initialize",
+    params: {
+      protocolVersion: "2025-06-18",
+      capabilities: {},
+      clientInfo: { name: "supersetctl", version: "1.0.0" },
+    },
+  });
+  if (!msg) throw new Error(`no response from ${ENDPOINT}`);
+  if (msg.error) throw new Error(`initialize failed: ${msg.error.message || JSON.stringify(msg.error)}`);
+  initialized = true;
+  await post({ jsonrpc: "2.0", method: "notifications/initialized" }).catch(() => {});
+}
+
+async function rpc(method, params) {
+  await ensureInit();
+  const msg = await post({ jsonrpc: "2.0", id: ++seq, method, params });
+  if (!msg) throw new Error(`no response for ${method}`);
+  if (msg.error) {
+    const detail = msg.error.data ? `: ${JSON.stringify(msg.error.data)}` : "";
+    throw new Error(`${method} failed: ${msg.error.message || JSON.stringify(msg.error)}${detail}`);
+  }
+  return msg.result;
+}
+
+async function listTools() {
+  const result = await rpc("tools/list", {});
+  return result.tools || [];
+}
+
+function coerce(raw) {
+  try {
+    return JSON.parse(raw);
+  } catch {
+    return raw;
+  }
+}
+
+function resolveProp(props, tool, flag) {
+  const keys = Object.keys(props);
+  const camel = flag.replace(/[-_]([a-z0-9])/g, (_, c) => c.toUpperCase());
+  const candidates = FLAG_ALIASES[tool]?.[flag] || [flag];
+  if (!keys.length) return candidates[0] === flag ? camel : candidates[0];
+  for (const name of candidates) {
+    if (props[name] !== undefined) return name;
+    const asCamel = name.replace(/[-_]([a-z0-9])/g, (_, c) => c.toUpperCase());
+    if (props[asCamel] !== undefined) return asCamel;
+    const snake = asCamel.replace(/[A-Z]/g, (c) => `_${c.toLowerCase()}`);
+    if (props[snake] !== undefined) return snake;
+  }
+  return null;
+}
+
+function buildArgs(tool, schema, flags) {
+  const props = (schema && schema.properties) || {};
+  const args = {};
+  for (const [flag, raw] of Object.entries(flags)) {
+    const key = resolveProp(props, tool, flag);
+    if (!key) {
+      const available = Object.keys(props).join(", ") || "unknown (schema not published)";
+      throw new Error(`unknown argument "${flag}" for ${tool} — available: ${available}`);
+    }
+    args[key] = coerce(raw);
+  }
+  return args;
+}
+
+function parseFlags(argv) {
+  const positional = [];
+  const flags = {};
+  for (let i = 0; i < argv.length; i++) {
+    const arg = argv[i];
+    if (arg === "--json" || arg === "--local") {
+      flags[arg.slice(2)] = true;
+      continue;
+    }
+    if (arg.startsWith("--")) {
+      const key = arg.slice(2);
+      const value = argv[i + 1];
+      if (value === undefined) throw new Error(`flag --${key} needs a value`);
+      flags[key] = value;
+      i++;
+      continue;
+    }
+    positional.push(arg);
+  }
+  return { positional, flags };
+}
+
+async function callTool(tool, args) {
+  const result = await rpc("tools/call", { name: tool, arguments: args });
+  if (result && Array.isArray(result.content)) {
+    const texts = result.content
+      .filter((c) => c && c.type === "text")
+      .map((c) => c.text)
+      .join("\n");
+    if (texts) {
+      try {
+        return JSON.parse(texts);
+      } catch {
+        return texts;
+      }
+    }
+  }
+  return result;
+}
+
+function print(value) {
+  process.stdout.write(`${typeof value === "string" ? value : JSON.stringify(value, null, 2)}\n`);
+}
+
+async function main() {
+  const argv = process.argv.slice(2);
+  const command = argv[0];
+  if (!command || command === "--help" || command === "-h" || command === "help") {
+    process.stdout.write(USAGE);
+    return;
+  }
+  const { positional, flags } = parseFlags(argv.slice(1));
+
+  if (command === "auth-check") {
+    const tools = await listTools();
+    const masked = API_KEY ? `${API_KEY.slice(0, 10)}… (${API_KEY.length} chars)` : "missing";
+    print({ ok: true, endpoint: ENDPOINT, key: masked, tools: tools.length });
+    return;
+  }
+
+  if (command === "tools-list") {
+    const tools = await listTools();
+    if (flags.json) {
+      print(tools);
+      return;
+    }
+    for (const tool of tools) {
+      const props = Object.keys((tool.inputSchema && tool.inputSchema.properties) || {});
+      print(`${tool.name}${props.length ? `  (${props.join(", ")})` : ""}`);
+      if (tool.description) print(`    ${tool.description}`);
+    }
+    return;
+  }
+
+  if (command === "call") {
+    const tool = positional[0];
+    if (!tool) throw new Error("usage: supersetctl call <tool> '<json-args>'");
+    let args = {};
+    if (positional[1]) args = coerce(positional[1]);
+    if (typeof args !== "object" || args === null || Array.isArray(args)) {
+      throw new Error("tool arguments must be a JSON object");
+    }
+    print(await callTool(tool, args));
+    return;
+  }
+
+  const toolMap = {
+    "hosts-list": "hosts_list",
+    "projects-list": "projects_list",
+    "workspaces-list": "workspaces_list",
+    "workspaces-create": "workspaces_create",
+    "agents-create": "agents_create",
+    "pages-publish": "pages_publish",
+  };
+  const tool = toolMap[command];
+  if (!tool) throw new Error(`unknown command "${command}"\n\n${USAGE}`);
+
+  const tools = await listTools();
+  const schema = (tools.find((t) => t.name === tool) || {}).inputSchema;
+
+  if (command === "pages-publish") {
+    const file = flags.file;
+    if (!file) throw new Error("pages-publish needs --file <path-to-html>");
+    flags.html = readFileSync(file, "utf8");
+    delete flags.file;
+  }
+  if (command === "agents-create" && !flags.workspace && !flags.workspaceId) {
+    throw new Error("agents-create needs --workspace <workspaceId>");
+  }
+
+  const args = buildArgs(tool, schema, flags);
+  print(await callTool(tool, args));
+}
+
+main().catch((err) => {
+  process.stderr.write(`supersetctl: ${err && err.message ? err.message : err}\n`);
+  process.exit(1);
+});

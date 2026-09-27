@@ -1,0 +1,120 @@
+:root {
+  --bg: #f4f5f7;
+  --card: #ffffff;
+  --ink: #16181d;
+  --muted: #6b7280;
+  --accent: #2563eb;
+  --accent-ink: #ffffff;
+  --error-bg: #fef2f2;
+  --error-ink: #b91c1c;
+  --ok-bg: #eff6ff;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+.card {
+  width: 100%;
+  max-width: 34rem;
+  background: var(--card);
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  padding: 2rem;
+  box-shadow: 0 10px 30px rgb(0 0 0 / 6%);
+}
+
+h1 {
+  margin: 0 0 0.4rem;
+  font-size: 1.5rem;
+}
+
+.sub {
+  margin: 0 0 1.4rem;
+  color: var(--muted);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+form {
+  display: flex;
+  gap: 0.6rem;
+}
+
+input {
+  flex: 1;
+  min-width: 0;
+  padding: 0.75rem 0.9rem;
+  font-size: 1.05rem;
+  font-family: ui-monospace, "SF Mono", Menlo, monospace;
+  border: 1px solid #d1d5db;
+  border-radius: 9px;
+  background: #fafafa;
+}
+
+input:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+  background: #fff;
+}
+
+button {
+  padding: 0 1.3rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--accent-ink);
+  background: var(--accent);
+  border: none;
+  border-radius: 9px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #1d4ed8;
+}
+
+.error {
+  margin-top: 1rem;
+  padding: 0.8rem 1rem;
+  background: var(--error-bg);
+  color: var(--error-ink);
+  border: 1px solid #fecaca;
+  border-radius: 9px;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.result {
+  margin-top: 1.2rem;
+  padding: 1.1rem 1.2rem;
+  background: var(--ok-bg);
+  border: 1px solid #bfdbfe;
+  border-radius: 9px;
+}
+
+.solution {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.steps {
+  margin: 0.9rem 0 0;
+  padding-left: 1.3rem;
+  color: var(--ink);
+  font-family: ui-monospace, "SF Mono", Menlo, monospace;
+  font-size: 0.95rem;
+  line-height: 1.9;
+}

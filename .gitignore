@@ -21,3 +21,7 @@ contracts/node_modules/
 /gbrain/
 /qm/
 harmony-workspace/
+services/*/node_modules/
+services/*/dist/
+tests/node_modules/
+forks/**/node_modules/

@@ -1,30 +1,161 @@
 {
   "sha": "e78f1c38b947b053f3a46881340f74f316be855a",
-  "toolchain": { "language": "TypeScript", "runtime": "bun", "package_manager": "bun" },
-  "build_commands": ["bun install", "bun run build"],
-  "test_commands": ["bun test"],
-  "test_results": "not_run_deps_missing",
-  "engine_seams": [
-    { "file": "src/core/engine.ts", "symbol": "BrainEngine" },
-    { "file": "src/core/postgres-engine.ts", "symbol": "putPage" },
-    { "file": "src/core/pglite-engine.ts", "symbol": "putPage" }
+  "toolchain": {
+    "bun": "1.4.2",
+    "bun_minimum_documented": "1.3.11",
+    "package_version": "0.59.0.0",
+    "typescript": "module project (tsc via bun run typecheck)",
+    "engines": ["postgres", "pglite"]
+  },
+  "build_commands": [
+    "bun install",
+    "bun run build",
+    "bun run build:all",
+    "bun run typecheck",
+    "bun run verify"
   ],
-  "mcp_remote_tool_seams": [
-    { "file": "src/mcp/server.ts", "symbol": "MCP server bootstrap" },
-    { "file": "src/mcp/instructions.ts", "symbol": "capability instructions" },
-    { "file": "src/mcp/source-preflight.ts", "symbol": "assertStdioSourceBindable" }
+  "test_commands": [
+    "bun test test/trust-boundary-contract.test.ts test/authorization-boundaries.test.ts",
+    "bun test test/oauth.test.ts",
+    "bun run test",
+    "bun run test:full"
   ],
-  "source_permission_seams": [
-    { "file": "src/core/sources-load.ts", "symbol": "parseSourceConfig" },
-    { "file": "src/core/source-resolver.ts", "symbol": "resolveSourceIdEngineFree" },
-    { "file": "src/core/source-id.ts", "symbol": "isValidSourceId" }
-  ],
-  "provisioning_seams": [
-    { "file": "docs/mcp/ADMIN.md", "symbol": "admin client management (documented)" },
-    { "file": "src/mcp/instructions.ts", "symbol": "owner credential posture" }
-  ],
+  "test_results": {
+    "executed": [
+      {
+        "command": "bun test test/trust-boundary-contract.test.ts test/authorization-boundaries.test.ts",
+        "passed": 10,
+        "failed": 0,
+        "notes": "Trust boundary + authorization boundaries"
+      },
+      {
+        "command": "bun test test/oauth.test.ts",
+        "passed": 121,
+        "failed": 0,
+        "notes": "OAuth provider, DCR, token verification, federated read"
+      }
+    ],
+    "not_executed": [
+      {
+        "command": "bun run test",
+        "reason": "Full parallel unit suite not run in W00 timebox; recommended on release lock"
+      },
+      {
+        "command": "bun run test:full",
+        "reason": "Requires verify + slow tests + DATABASE_URL E2E"
+      }
+    ]
+  },
+  "engine_seams": {
+    "contract_interface": {
+      "file": "src/core/engine.ts",
+      "symbol": "BrainEngine",
+      "factory": "src/core/engine-factory.ts:createEngine"
+    },
+    "implementations": [
+      "src/core/postgres-engine.ts",
+      "src/core/pglite-engine.ts"
+    ],
+    "operations_registry": {
+      "file": "src/core/operations.ts",
+      "contract_types": "src/core/ops/contract.ts"
+    },
+    "page_crud_ops": {
+      "file": "src/core/ops/pages.ts",
+      "symbols": ["get_page", "put_page", "fetch", "delete_page", "list_pages"]
+    },
+    "search_ops": {
+      "file": "src/core/ops/search.ts",
+      "symbols": ["search", "query"]
+    },
+    "graph_ops": {
+      "file": "src/core/ops/links.ts",
+      "symbols": ["add_link", "get_links", "traverse_graph"]
+    },
+    "revision_cas": {
+      "types": "src/core/page-state/types.ts:assertPageRevision",
+      "wire_parse": "src/core/persistence/preconditions.ts:parseMutationPrecondition",
+      "coordinator": "src/core/persistence/page-prepare.ts:preparePageMutation",
+      "admission": "src/core/persistence/page-mutations.ts:submitPageMutation",
+      "engine_put": "src/core/pglite-engine.ts|postgres-engine.ts:putPage"
+    },
+    "brain_routing": {
+      "file": "src/core/brain-resolver.ts",
+      "registry": "src/core/brain-registry.ts"
+    },
+    "source_routing": {
+      "file": "src/core/source-resolver.ts",
+      "validation": "src/core/source-id.ts",
+      "crud_impl": "src/core/sources-ops.ts",
+      "ops": "src/core/ops/sources.ts"
+    },
+    "documentation": [
+      "README.md",
+      "docs/architecture/brains-and-sources.md"
+    ]
+  },
+  "mcp_remote_tool_seams": {
+    "stdio_server": "src/mcp/server.ts",
+    "http_oauth_server": "src/commands/serve-http.ts",
+    "legacy_http": "src/mcp/http-transport.ts",
+    "shared_dispatch": {
+      "file": "src/mcp/dispatch.ts",
+      "symbols": ["dispatchToolCall", "buildOperationContext"]
+    },
+    "tool_schemas": "src/mcp/tool-defs.ts:buildToolDefs",
+    "token_verification": "src/core/oauth-provider.ts:verifyAccessToken",
+    "oauth_routes": "src/commands/serve-http-oauth.ts",
+    "capabilities_resource": "src/mcp/capabilities.ts",
+    "operator_docs": [
+      "docs/mcp/README.md",
+      "docs/mcp/ADMIN.md",
+      "docs/mcp/DEPLOY.md"
+    ]
+  },
+  "source_permission_seams": {
+    "read_scope_resolver": "src/core/ops/context.ts:sourceScopeOpts",
+    "write_source_gate": "src/core/persistence/page-mutations.ts:pageMutationSource",
+    "explicit_source_param": "src/core/ops/context.ts:resolveRequestedScope",
+    "search_federation": "src/core/ops/context.ts:federatedSearchScope",
+    "slug_write_fence": "src/core/ops/context.ts:enforceClientSlugFence",
+    "bound_client_op_allowlist": "src/core/ops/context.ts:enforceBoundClientOpAllowList",
+    "auth_fields": "src/core/ops/contract.ts:AuthInfo (sourceId, allowedSources, boundSlugPrefixes, allowedOperations)",
+    "grant_storage": "oauth_clients columns via src/core/grants/model.ts:ClientGrant",
+    "tests": [
+      "test/authorization-boundaries.test.ts",
+      "test/trust-boundary-contract.test.ts"
+    ]
+  },
+  "provisioning_seams": {
+    "machine_grant": {
+      "file": "src/commands/mcp-provision.ts",
+      "symbol": "provisionHarnessGrant"
+    },
+    "cli_entry": "src/commands/mcp.ts (gbrain mcp grant)",
+    "admin_http": "src/commands/serve-http-grants.ts",
+    "client_registration": "src/commands/auth.ts:registerScopedClient",
+    "profile_resolution": "src/core/grants/profiles.ts:resolveGrantProfile",
+    "rescope": "src/commands/auth.ts (auth rescope-client) + src/core/grants/service.ts",
+    "source_create_local": "src/core/sources-ops.ts:addSource",
+    "source_create_mcp": "src/core/ops/sources.ts:sources_add",
+    "admin_docs": "docs/mcp/ADMIN.md"
+  },
   "unsupported_assumptions": [
-    "Publication compare-and-swap may need Harmony ledger if upstream CAS missing",
-    "Company/feature source mapping is Harmony gateway responsibility"
-  ]
+    "Harmony tenant provisioning API exists in GBrain — only operator CLI/HTTP admin grant flows exist",
+    "Predefined Harmony sources company-published, company-observations, feature-<uuid> — must be created explicitly; no domain logic",
+    "Knowledge epoch, publication ledger, and knowledge.published events — Harmony-owned",
+    "Fail-closed required company-context reads by record ID — gateway must implement on top of get_page/search/sources_status",
+    "Publication CAS at business-record level — GBrain offers page revision UUID CAS only; Harmony serializes per record",
+    "Remote sources_add with host filesystem path — blocked for remote callers",
+    "Automatic graph edges on remote put_page — skipped; requires sweep or add_link",
+    "Cross-tenant isolation — separate brain DB + grants; not a single multi-tenant row model",
+    "Full CI test:full green at audit SHA — not verified in W00 (subset only)"
+  ],
+  "harmony_gateway_gaps": {
+    "company_published_source": "Not native; use sources_add + scoped federated_read/write grants",
+    "company_observations_source": "Same; optional federated_read for explorer roles",
+    "feature_uuid_sources": "Valid source ids if lowercase UUID; one source per candidate via provisioning automation",
+    "fail_closed_required_reads": "Not upstream; implement health checks + explicit fetch errors in gateway",
+    "publication_cas": "Compose GBrain expected_revision + request_id with Harmony publication ID and read-verify step"
+  }
 }

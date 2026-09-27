@@ -1,0 +1,22 @@
+{
+  "schema_version": "1.0",
+  "assignment_id": "22222222-2222-4222-8222-222222222223",
+  "tenant_id": "33333333-3333-4333-8333-333333333333",
+  "task_id": "44444444-4444-4444-8444-444444444445",
+  "attempt_id": "55555555-5555-4555-8555-555555555556",
+  "generation": 1,
+  "task_type": "pm_spec",
+  "candidate_id": "66666666-6666-4666-8666-666666666666",
+  "candidate_revision": 1,
+  "input_manifest_id": "77777777-7777-4777-8777-777777777778",
+  "context_manifest_id": "88888888-8888-4888-8888-888888888889",
+  "policy_revision": 1,
+  "deadline_at": "2026-09-28T18:30:00.000Z",
+  "budget": {
+    "max_model_micro_usd": 2000000,
+    "max_wall_seconds": 900,
+    "max_tool_calls": 120
+  },
+  "result_contract": "pm_spec.v1",
+  "input_hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+}

@@ -1,0 +1,28 @@
+{
+  "sha": "63ba388ed449ff46c9d70744119dffc85df0fbf8",
+  "toolchain": { "language": "Python", "runtime": "python>=3.12", "package_manager": "uv" },
+  "build_commands": ["uv sync"],
+  "test_commands": ["uv run pytest", "make test"],
+  "test_results": "not_run_deps_missing",
+  "extension_registration_seams": [
+    { "file": "core/src/ufo/host/ext/loader.py", "symbol": "load_manifests / ufo.extension entry points" },
+    { "file": "core/src/ufo/runtime/ext/manifest.py", "symbol": "Manifest" },
+    { "file": "pyproject.toml", "symbol": "project.entry-points.ufo.extension" }
+  ],
+  "durable_turn_seams": [
+    { "file": "core/src/ufo/runtime/jobs.py", "symbol": "job handlers + ExtensionContext" },
+    { "file": "core/src/ufo/runtime/queue.py", "symbol": "turn dispatch queue" }
+  ],
+  "tool_authorization_seams": [
+    { "file": "core/src/ufo/runtime/tools/context.py", "symbol": "tool registry / ExtensionContext.ext" },
+    { "file": "core/src/ufo/runtime/ext/context.py", "symbol": "ExtensionContext" }
+  ],
+  "harmony_extension_points": [
+    { "file": "extensions/harmony (new)", "symbol": "ufo_ext_harmony", "notes": "Mirror extensions/sample + extensions/gbrain patterns" },
+    { "file": "packs/harmony (new)", "symbol": "ufo.pack", "notes": "Activate company-agent tools + GBrain gateway tool" }
+  ],
+  "unsupported_assumptions": [
+    "No native QM delegation tools in UFO today",
+    "Domain tables must live in Harmony migrations, not ad hoc UFO core SQL"
+  ]
+}

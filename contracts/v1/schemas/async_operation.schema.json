@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://harmony.local/contracts/v1/async_operation.schema.json",
+  "title": "AsyncOperation",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["operation_id", "state", "resource_type", "resource_id", "created_at", "updated_at"],
+  "properties": {
+    "operation_id": { "type": "string", "format": "uuid" },
+    "state": { "type": "string", "enum": ["accepted", "running", "blocked", "succeeded", "failed", "cancelled"] },
+    "resource_type": { "type": "string", "minLength": 1, "maxLength": 64 },
+    "resource_id": { "type": ["string", "null"], "format": "uuid" },
+    "created_at": { "type": "string", "format": "date-time" },
+    "updated_at": { "type": "string", "format": "date-time" },
+    "result": { "type": ["object", "null"] },
+    "error": { "oneOf": [{ "$ref": "task_error.schema.json" }, { "type": "null" }] },
+    "status_url": { "type": "string", "maxLength": 2048 }
+  }
+}

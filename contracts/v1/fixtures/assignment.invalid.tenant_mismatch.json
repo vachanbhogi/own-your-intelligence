@@ -1,0 +1,22 @@
+{
+  "schema_version": "1.0",
+  "assignment_id": "22222222-2222-4222-8222-222222222224",
+  "tenant_id": "33333333-3333-4333-8333-333333333334",
+  "task_id": "44444444-4444-4444-8444-444444444446",
+  "attempt_id": "55555555-5555-4555-8555-555555555557",
+  "generation": 1,
+  "task_type": "source_discovery",
+  "candidate_id": null,
+  "candidate_revision": null,
+  "input_manifest_id": "77777777-7777-4777-8777-777777777779",
+  "context_manifest_id": "88888888-8888-4888-8888-88888888888b",
+  "policy_revision": 1,
+  "deadline_at": "2026-09-28T18:30:00.000Z",
+  "budget": {
+    "max_model_micro_usd": 2000000,
+    "max_wall_seconds": 900,
+    "max_tool_calls": 120
+  },
+  "result_contract": "research_report.v1",
+  "input_hash": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+}

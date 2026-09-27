@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://harmony.local/contracts/v1/assignment.schema.json",
+  "title": "Assignment",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "assignment_id",
+    "tenant_id",
+    "task_id",
+    "attempt_id",
+    "generation",
+    "task_type",
+    "candidate_id",
+    "candidate_revision",
+    "input_manifest_id",
+    "context_manifest_id",
+    "policy_revision",
+    "deadline_at",
+    "budget",
+    "result_contract",
+    "input_hash"
+  ],
+  "properties": {
+    "schema_version": { "type": "string", "const": "1.0" },
+    "assignment_id": { "type": "string", "format": "uuid" },
+    "tenant_id": { "type": "string", "format": "uuid" },
+    "task_id": { "type": "string", "format": "uuid" },
+    "attempt_id": { "type": "string", "format": "uuid" },
+    "generation": { "type": "integer", "minimum": 1, "maximum": 2147483647 },
+    "task_type": { "type": "string", "minLength": 1, "maxLength": 64 },
+    "candidate_id": { "type": ["string", "null"], "format": "uuid" },
+    "candidate_revision": { "type": ["integer", "null"], "minimum": 1, "maximum": 2147483647 },
+    "input_manifest_id": { "type": "string", "format": "uuid" },
+    "context_manifest_id": { "type": "string", "format": "uuid" },
+    "policy_revision": { "type": "integer", "minimum": 1, "maximum": 2147483647 },
+    "deadline_at": { "type": "string", "format": "date-time" },
+    "budget": { "$ref": "budget.schema.json" },
+    "result_contract": { "type": "string", "minLength": 1, "maxLength": 64 },
+    "input_hash": { "type": "string", "pattern": "^[a-f0-9]{64}$" }
+  }
+}

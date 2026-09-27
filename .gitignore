@@ -1,0 +1,23 @@
+# Upstream checkouts (separate git histories; pinned in release-lock.json)
+harmony-workspace/qm/
+harmony-workspace/ufo/
+harmony-workspace/gbrain/
+harmony-workspace/**/node_modules/
+harmony-workspace/**/.venv/
+harmony-workspace/**/__pycache__/
+node_modules/
+.venv/
+__pycache__/
+*.pyc
+.DS_Store
+.env
+.env.*
+!.env.example
+dist/
+coverage/
+*.log
+contracts/node_modules/
+/ufo/
+/gbrain/
+/qm/
+harmony-workspace/

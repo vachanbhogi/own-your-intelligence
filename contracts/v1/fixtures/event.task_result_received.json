@@ -1,0 +1,16 @@
+{
+  "schema_version": "1.0",
+  "event_id": "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+  "event_type": "task.result_received",
+  "tenant_id": "33333333-3333-4333-8333-333333333333",
+  "aggregate_type": "task",
+  "aggregate_id": "44444444-4444-4444-8444-444444444444",
+  "aggregate_version": 4,
+  "occurred_at": "2026-09-28T18:17:24.000Z",
+  "correlation_id": "66666666-6666-4666-8666-666666666666",
+  "causation_id": "22222222-2222-4222-8222-222222222222",
+  "payload": {
+    "attempt_id": "55555555-5555-4555-8555-555555555555",
+    "generation": 1
+  }
+}

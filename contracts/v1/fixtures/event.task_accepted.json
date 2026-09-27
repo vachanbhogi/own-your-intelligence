@@ -1,0 +1,18 @@
+{
+  "schema_version": "1.0",
+  "event_id": "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
+  "event_type": "task.accepted",
+  "tenant_id": "33333333-3333-4333-8333-333333333333",
+  "aggregate_type": "task",
+  "aggregate_id": "44444444-4444-4444-8444-444444444444",
+  "aggregate_version": 2,
+  "occurred_at": "2026-09-28T18:05:00.000Z",
+  "correlation_id": "66666666-6666-4666-8666-666666666666",
+  "causation_id": "22222222-2222-4222-8222-222222222222",
+  "payload": {
+    "assignment_id": "22222222-2222-4222-8222-222222222222",
+    "attempt_id": "55555555-5555-4555-8555-555555555555",
+    "generation": 1,
+    "input_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+  }
+}

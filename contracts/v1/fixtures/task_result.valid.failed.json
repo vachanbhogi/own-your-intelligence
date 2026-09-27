@@ -1,0 +1,23 @@
+{
+  "schema_version": "1.0",
+  "task_id": "44444444-4444-4444-8444-444444444444",
+  "attempt_id": "55555555-5555-4555-8555-555555555555",
+  "generation": 1,
+  "outcome": "failed",
+  "input_hash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "result_contract": "research_report.v1",
+  "result_artifact_id": null,
+  "artifact_ids": [],
+  "usage": {
+    "model_micro_usd": 120000,
+    "wall_seconds": 40,
+    "tool_calls": 5
+  },
+  "completed_at": "2026-09-28T18:17:24.000Z",
+  "error": {
+    "code": "CONTEXT_UNAVAILABLE",
+    "retryable": true,
+    "message": "Required company context could not be retrieved.",
+    "details_artifact_id": null
+  }
+}

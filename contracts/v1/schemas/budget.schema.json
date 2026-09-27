@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://harmony.local/contracts/v1/budget.schema.json",
+  "title": "Budget",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["max_model_micro_usd", "max_wall_seconds", "max_tool_calls"],
+  "properties": {
+    "max_model_micro_usd": { "type": "integer", "minimum": 1, "maximum": 9007199254740991 },
+    "max_wall_seconds": { "type": "integer", "minimum": 1, "maximum": 2147483647 },
+    "max_tool_calls": { "type": "integer", "minimum": 1, "maximum": 2147483647 }
+  }
+}

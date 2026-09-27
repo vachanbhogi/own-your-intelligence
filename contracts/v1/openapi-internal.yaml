@@ -1,0 +1,98 @@
+openapi: 3.1.0
+info:
+  title: Harmony internal UFO↔QM contracts
+  version: "1.0"
+  description: Internal service APIs for assignment delegation and QM event ingress.
+servers:
+  - url: https://qm.internal
+    description: Tenant QM cell
+  - url: https://harmony-control.internal
+    description: UFO/Harmony control plane
+paths:
+  /internal/harmony/v1/assignments:
+    post:
+      operationId: createAssignment
+      summary: Admit a QM assignment
+      parameters:
+        - $ref: "#/components/parameters/IdempotencyKey"
+        - $ref: "#/components/parameters/XRequestId"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "./schemas/assignment.schema.json"
+      responses:
+        "202":
+          description: Assignment accepted after durable outbox
+        "409":
+          description: Idempotency or generation conflict
+          content:
+            application/json:
+              schema:
+                $ref: "./schemas/error_response.schema.json"
+  /internal/harmony/v1/assignments/{id}:
+    get:
+      operationId: getAssignment
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        "200":
+          description: Assignment projection
+  /internal/harmony/v1/assignments/{id}/cancel:
+    post:
+      operationId: cancelAssignment
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - $ref: "#/components/parameters/IdempotencyKey"
+        - $ref: "#/components/parameters/XRequestId"
+      responses:
+        "202":
+          description: Cancellation accepted
+  /internal/harmony/v1/capabilities:
+    get:
+      operationId: getCapabilities
+      responses:
+        "200":
+          description: Supported contract majors, health, build SHA, adapters
+  /internal/harmony/v1/events/qm:
+    post:
+      operationId: ingestQmEvent
+      summary: QM outbox callback into Harmony inbox
+      parameters:
+        - $ref: "#/components/parameters/IdempotencyKey"
+        - $ref: "#/components/parameters/XRequestId"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "./schemas/event_envelope.schema.json"
+      responses:
+        "202":
+          description: Event durable in inbox before ack
+components:
+  parameters:
+    IdempotencyKey:
+      name: Idempotency-Key
+      in: header
+      required: true
+      schema:
+        type: string
+    XRequestId:
+      name: X-Request-ID
+      in: header
+      required: true
+      schema:
+        type: string
+        format: uuid

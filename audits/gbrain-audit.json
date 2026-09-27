@@ -1,0 +1,30 @@
+{
+  "sha": "e78f1c38b947b053f3a46881340f74f316be855a",
+  "toolchain": { "language": "TypeScript", "runtime": "bun", "package_manager": "bun" },
+  "build_commands": ["bun install", "bun run build"],
+  "test_commands": ["bun test"],
+  "test_results": "not_run_deps_missing",
+  "engine_seams": [
+    { "file": "src/core/engine.ts", "symbol": "BrainEngine" },
+    { "file": "src/core/postgres-engine.ts", "symbol": "putPage" },
+    { "file": "src/core/pglite-engine.ts", "symbol": "putPage" }
+  ],
+  "mcp_remote_tool_seams": [
+    { "file": "src/mcp/server.ts", "symbol": "MCP server bootstrap" },
+    { "file": "src/mcp/instructions.ts", "symbol": "capability instructions" },
+    { "file": "src/mcp/source-preflight.ts", "symbol": "assertStdioSourceBindable" }
+  ],
+  "source_permission_seams": [
+    { "file": "src/core/sources-load.ts", "symbol": "parseSourceConfig" },
+    { "file": "src/core/source-resolver.ts", "symbol": "resolveSourceIdEngineFree" },
+    { "file": "src/core/source-id.ts", "symbol": "isValidSourceId" }
+  ],
+  "provisioning_seams": [
+    { "file": "docs/mcp/ADMIN.md", "symbol": "admin client management (documented)" },
+    { "file": "src/mcp/instructions.ts", "symbol": "owner credential posture" }
+  ],
+  "unsupported_assumptions": [
+    "Publication compare-and-swap may need Harmony ledger if upstream CAS missing",
+    "Company/feature source mapping is Harmony gateway responsibility"
+  ]
+}

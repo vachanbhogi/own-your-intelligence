@@ -91,6 +91,82 @@ flowchart TB
 | **Review agent** | Company GBrain + that PR GBrain | Code review against product truth and the PM/QA why |
 | **Human** | GitHub | Merge to `main` only |
 
+## What this repo actually is
+
+**Not** mostly “Python that calls Superset.”
+
+| Layer | What it is | Approx. share of work |
+| --- | --- | --- |
+| **`apps/acmepulse`** | Fake SaaS the factory ships into (UI + intentional bugs) | Product demo surface |
+| **`factory/`** | Thin Python glue: fetch Google reviews, cluster, write GBrain, kick pipeline stages | Small — orchestration, not the brains |
+| **`agents/`** | Prompts, skills, UFO/QM agent configs — company agent, PM/QA, review | Most of the “intelligence” behavior |
+| **`memory/`** | Seed content for company GBrain + templates for per-PR brains | Docs the big agent knows |
+| **CLIs you drive** | `gbrain`, `memorable`, `ufo` / `ufoctl`, `qm`, `superset` CLI/MCP/SDK, River API | Sponsors do the heavy lifting |
+
+**Eng step:** company/PM agents (or a small Python step) spawn work via **Superset CLI / MCP / SDK** (`superset new "…"`, or `agents_create`) against `apps/acmepulse` — they do not reimplement coding agents in Python.
+
+```text
+factory (thin)     →  reviews in, GBrain writes, “start eng”
+UFO / QM agents    →  decide X, PM/QA specs, review
+Superset           →  implement + open PR
+Human              →  merge main
+```
+
+## Folder structure
+
+```text
+intel/
+├── ARCHITECTURE.md
+├── README.md
+├── apps/
+│   └── acmepulse/                 # fake SaaS (Next.js or similar)
+│       ├── app/                   # intentional gaps reviews complain about
+│       ├── package.json
+│       └── ...
+├── factory/                       # thin Python orchestration
+│   ├── pyproject.toml
+│   ├── explore.py                 # Google reviews ingest (API + fixture fallback)
+│   ├── cluster.py                 # themes → candidate features/bugs
+│   ├── gbrain_sync.py             # write company / PR brain notes
+│   ├── pipeline.py                # stage runner: decide → pm → eng → review
+│   ├── superset_spawn.py          # CLI/SDK: open workspace + coding agent
+│   └── fixtures/
+│       └── reviews.json           # demo-safe review corpus
+├── agents/                        # agent definitions (not heavy app code)
+│   ├── company/                   # big agent — full company GBrain
+│   │   ├── SYSTEM.md
+│   │   └── skills/
+│   ├── pm_qa/                     # per-feature subagent
+│   │   └── SYSTEM.md
+│   ├── review/                    # company-aware code review
+│   │   └── SYSTEM.md
+│   └── ufo/                       # UFO pack/extension or prompt wiring
+│       └── ...
+├── memory/
+│   ├── company/                   # seed notes → company GBrain
+│   │   ├── product.md
+│   │   ├── brand.md
+│   │   ├── decisions.md
+│   │   └── reviews/               # ingested themes land here conceptually
+│   └── pr/                        # template for per-PR GBrain slug
+│       └── TEMPLATE.md
+├── river/                         # optional train set for orchestrator taste
+│   ├── dataset.jsonl
+│   └── train_notes.md
+└── demo/
+    ├── SCRIPT.md                  # live demo beats
+    └── screenshots/
+```
+
+**GBrain layout (logical, inside GBrain — not necessarily all files on disk):**
+
+```text
+company/                 # big brain
+  product, brand, decisions, review-themes
+pr/<feature-id>/         # small brain per PR
+  evidence, pm-spec, mockup, eng-notes, review
+```
+
 ## Pitch (30s)
 
 “Google reviews decide what to build. A company agent with a full **GBrain** picks X fixes. Each gets a PM/QA subagent and its own PR brain, Superset ships the PR, a reviewer with the company brain checks it, and a human merges. We don’t rent intelligence—we own the business memory and the factory.”

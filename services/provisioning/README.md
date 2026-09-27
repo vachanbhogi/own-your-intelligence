@@ -41,3 +41,5 @@ npm start   # PROVISIONING_PORT, PROVISIONING_DATA_FILE
 ## Fixtures vs real cloud
 
 W02 uses **fixture provisioning** (deterministic binding values, no AWS/Auth0). Real database/cell/worker provisioning is a later wave; the HTTP contract and idempotent operation receipts match handoff **06** / **13**.
+
+Environment: `PROVISIONING_PORT` (default `7104`), `PROVISIONING_DATA_FILE` (optional persistence path).

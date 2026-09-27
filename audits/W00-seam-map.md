@@ -4,7 +4,7 @@ Pinned SHAs (see [release-lock.json](../release-lock.json)):
 
 | Repo | SHA | Branch | Detailed map | Baseline |
 | --- | --- | --- | --- | --- |
-| qm | `a5a36675041a85e30b9ff3632f678ba36837aabf` | harmony/main | [qm-seam-map.md](qm-seam-map.md) | structure audit (deps not fully run) |
+| qm | `a5a36675041a85e30b9ff3632f678ba36837aabf` | harmony/main | [qm-seam-map.md](qm-seam-map.md) | typecheck pass; Node 24 tests ~7542 pass / 2 network fails; Node 22 `npm test` unsupported |
 | ufo | `63ba388ed449ff46c9d70744119dffc85df0fbf8` | harmony/main | [ufo-seam-map.md](ufo-seam-map.md) | install/gates + subset pytest; see audit JSON |
 | gbrain | `e78f1c38b947b053f3a46881340f74f316be855a` | harmony/main | [gbrain-seam-map.md](gbrain-seam-map.md) | **131/131** trust/auth/oauth tests pass |
 

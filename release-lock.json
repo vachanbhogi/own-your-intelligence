@@ -11,7 +11,8 @@
       "toolchain": {
         "language": "TypeScript",
         "runtime": "node >= 22",
-        "package_manager": "npm"
+        "package_manager": "npm",
+        "node_declared": ">=24.15.0"
       },
       "build_commands": [
         "npm ci",
@@ -20,7 +21,12 @@
       "test_commands": [
         "npm test"
       ],
-      "baseline_tests": "not executed in W00 (deps not installed); structure audit complete"
+      "baseline_tests": {
+        "typecheck_node22": "pass",
+        "npm_test_node22": "fail (engines require Node >=24.15; ERR_UNKNOWN_FILE_EXTENSION)",
+        "npm_test_node24": "mostly_pass (7542 pass, 2 fail skill-packs-routes external git fetch)",
+        "subset_swarms_util_crypto_node24": "42 pass"
+      }
     },
     "ufo": {
       "upstream": "https://github.com/ufo-ai/ufo-core",

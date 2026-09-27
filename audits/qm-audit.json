@@ -1,32 +1,231 @@
 {
   "sha": "a5a36675041a85e30b9ff3632f678ba36837aabf",
-  "toolchain": { "language": "TypeScript", "runtime": "node>=22", "package_manager": "npm" },
-  "build_commands": ["npm ci", "npm run typecheck"],
-  "test_commands": ["npm test"],
-  "test_results": "not_run_deps_missing",
+  "toolchain": {
+    "language": "TypeScript (ESM)",
+    "node_declared": ">=24.15.0",
+    "npm_declared": ">=11.10.0",
+    "node_audit": "24.15.0 (tests); VM default 22.14.0 insufficient for npm test",
+    "typescript": "^5.8.2",
+    "http": "fastify ^5.12.1",
+    "branch": "harmony/main"
+  },
+  "build_commands": [
+    "npm ci",
+    "npm run build:connector-sdk",
+    "npm run typecheck",
+    "npm run typecheck:contract"
+  ],
+  "test_commands": [
+    "npm test",
+    "npm run test:all",
+    "npm run test:pg",
+    "npm run test:root:shard",
+    "npm run test:root:shard:check -- --shards 5"
+  ],
+  "test_results": {
+    "typecheck": { "command": "npm run typecheck", "node": "22.14.0", "status": "pass" },
+    "npm_test_node22": {
+      "command": "npm test",
+      "node": "22.14.0",
+      "status": "fail",
+      "detail": "668 test files failed with ERR_UNKNOWN_FILE_EXTENSION for .ts; engines require Node 24+"
+    },
+    "npm_test_node24": {
+      "command": "node --experimental-test-module-mocks --test test/*.test.ts",
+      "node": "24.15.0",
+      "status": "mostly_pass",
+      "pass": 7542,
+      "fail": 2,
+      "failures": [
+        "test/skill-packs-routes.test.ts (external git fetch: ECONNRESET / fetch failed)"
+      ],
+      "duration_approx_ms": 920000
+    },
+    "subset_node24": {
+      "command": "test/util-crypto.test.ts test/swarms.test.ts",
+      "node": "24.15.0",
+      "status": "pass",
+      "pass": 42,
+      "fail": 0
+    }
+  },
   "admission_seams": [
-    { "file": "src/api/routes/index.ts", "symbol": "rawRoutes", "notes": "Mount new Harmony internal routes" },
-    { "file": "src/swarms/swarm-service.ts", "symbol": "SwarmService.spawn", "notes": "Bounded worker spawn after root session" },
-    { "file": "src/swarms/swarm-fence.ts", "symbol": "assertSwarmRun", "notes": "Existing lease/attempt fence" },
-    { "file": "src/sessions/session-store.ts", "symbol": "SessionStore", "notes": "Root manager session persistence" }
+    {
+      "file": "src/wiring.ts",
+      "symbol": "runs.enqueue (wrapper)",
+      "notes": "Advisory lock session-run-admission; subagent tree run cap before RunStore.enqueue"
+    },
+    {
+      "file": "src/runs/run-store.ts",
+      "symbol": "RunStore.enqueue / claim / heartbeat",
+      "notes": "Durable turn queue; leaseToken and leaseExpiresAt on running runs"
+    },
+    {
+      "file": "src/runs/worker.ts",
+      "symbol": "processRun / createWorker",
+      "notes": "Worker claims run, heartbeats lease, calls orchestrator.handleTurn"
+    },
+    {
+      "file": "src/util/admitted-work.ts",
+      "symbol": "createAdmittedWork",
+      "notes": "Deployment pause/drain gate for synchronous turns and background sweepers"
+    },
+    {
+      "file": "src/api/app.ts",
+      "symbol": "createApp (turn wrapper)",
+      "notes": "Human turn admission via admittedWork unless async"
+    },
+    {
+      "file": "src/sessions/session-syscalls.ts",
+      "symbol": "open",
+      "notes": "Subagent session-tree-admission lock; getOrCreateByThread + runs.enqueue dedup subagent-open:*"
+    },
+    {
+      "file": "src/swarms/swarm-service.ts",
+      "symbol": "prepareInitialSwarm / spawn / reconcile / deliver",
+      "notes": "Swarm root init, reserved workers, outbox provisioning, runs.enqueue for notifications"
+    },
+    {
+      "file": "src/swarms/swarm-fence.ts",
+      "symbol": "assertSwarmRun",
+      "notes": "Agent swarm writes require active run lease matching capability fence"
+    },
+    {
+      "file": "src/swarms/swarm-store.ts",
+      "symbol": "createSwarmStore / pending",
+      "notes": "Durable swarm state; pending batch for sweeper"
+    },
+    {
+      "file": "src/api/routes/swarms.ts",
+      "symbol": "swarmRequest",
+      "notes": "HTTP admission surface /v1/swarm and /v1/sessions/:id/swarm"
+    },
+    {
+      "file": "src/resolution/scope-membership.ts",
+      "symbol": "canReadScope / canUseSandboxScope",
+      "notes": "Org/scope authorization (QM deployment org, not Harmony tenant API)"
+    },
+    {
+      "file": "src/loops/loop-fire.ts",
+      "symbol": "createLoopFireService.fire",
+      "notes": "Automation/project loop turn admission via triggers"
+    }
   ],
   "sandbox_provider_seams": [
-    { "file": "src/sandbox/sandbox.ts", "symbol": "Sandbox", "notes": "provision/run/teardown primary interface" },
-    { "file": "src/sandbox/sandbox-routing.ts", "symbol": "createSandboxRouter", "notes": "Backend selection" },
-    { "file": "src/sandbox/local-sandbox.ts", "symbol": "provision", "notes": "First-slice local backend" }
+    {
+      "file": "src/sandbox/sandbox.ts",
+      "symbol": "Sandbox interface",
+      "notes": "provision, run, files, optional stageIn/stageOut/importFiles, teardown"
+    },
+    {
+      "file": "src/sandbox/sandbox-routing.ts",
+      "symbol": "createSandboxRouter",
+      "notes": "Per-scope backend routing; SandboxBackendName union"
+    },
+    {
+      "file": "src/sandbox/sandbox-resources.ts",
+      "symbol": "createSandboxResources",
+      "notes": "Inventory create/access/retire; used by swarm reconcile and execute tool"
+    },
+    {
+      "file": "src/wiring.ts",
+      "symbol": "buildBackend / sandboxResources / createSandboxRouter",
+      "notes": "Constructs local, sprites, smolmachines, e2b, modal, aws, porter, agent37, superserve"
+    },
+    {
+      "file": "src/core/orchestrator/sandboxes.ts",
+      "symbol": "createTurnSandboxes",
+      "notes": "Turn-level sandbox selection including swarm worker sandboxId"
+    },
+    {
+      "file": "src/harness/agent-tools.ts",
+      "symbol": "execute tool",
+      "notes": "Agent command execution against resolved sandbox handle"
+    },
+    {
+      "file": "src/runs/postgres-run-store.ts",
+      "symbol": "reapExpired",
+      "notes": "Lease fence on expired runs (FENCE_HOLD_MS) before requeue/park"
+    }
   ],
   "api_extension_points": [
-    { "file": "src/api/routes/route.ts", "symbol": "run", "notes": "Route execution" },
-    { "file": "plugins/chassis/src/router.ts", "symbol": "findRoute", "notes": "Path matching" },
-    { "file": "src/harmony (new)", "symbol": "assignments", "notes": "Proposed Harmony delegation module" }
+    {
+      "file": "src/api/routes/index.ts",
+      "symbol": "rawRoutes / apiRoutes",
+      "notes": "Register new Harmony internal routes here"
+    },
+    {
+      "file": "src/api/server.ts",
+      "symbol": "createServer / gate",
+      "notes": "Auth gate: capability token, portal identity, source auth, route auth aud"
+    },
+    {
+      "file": "src/api/routes/route.ts",
+      "symbol": "Route / RouteAuth",
+      "notes": "Route contract: public | source | either | { aud }"
+    },
+    {
+      "file": "src/auth/capability-token.ts",
+      "symbol": "CapabilityClaims / verifyCapabilityToken",
+      "notes": "Extend with harmony-delegation aud and task/generation claims"
+    },
+    {
+      "file": "plugins/chassis/src/router.ts",
+      "symbol": "compilePath / findRoute",
+      "notes": "Shared path matching for core and plugins"
+    },
+    {
+      "file": "src/api/routes/swarms.ts",
+      "symbol": "swarmRoutes",
+      "notes": "Closest existing multi-agent HTTP API; not service-authenticated for UFO"
+    },
+    {
+      "file": "src/api/routes/turns.ts",
+      "symbol": "turn routes",
+      "notes": "Primary turn ingress; pattern for validated POST bodies"
+    }
   ],
   "memory_provider_seams": [
-    { "file": "src/memory/provider-factory.ts", "symbol": "createMcpMemoryProvider", "notes": "MCP external knowledge" },
-    { "file": "src/memory/provider-config.ts", "symbol": "parseMemoryProviderConfig", "notes": "failOpen default true — override for Harmony" }
+    {
+      "file": "docs/memory-providers.md",
+      "symbol": "MEMORY_PROVIDER_CONFIG",
+      "notes": "Operator documentation for MCP and memorable providers"
+    },
+    {
+      "file": "src/memory/provider-config.ts",
+      "symbol": "parseMemoryProviderConfig",
+      "notes": "JSON config parse and validation"
+    },
+    {
+      "file": "src/memory/provider-factory.ts",
+      "symbol": "createConfiguredMemoryService",
+      "notes": "Binds default notebook + external providers"
+    },
+    {
+      "file": "src/memory/provider-router.ts",
+      "symbol": "createRoutedMemoryService",
+      "notes": "Scope routes, capture policies, failOpen per route (default true)"
+    },
+    {
+      "file": "src/memory/mcp-memory-provider.ts",
+      "symbol": "createMcpMemoryProvider",
+      "notes": "GBrain gateway integration surface via MCP tools and OAuth client credentials"
+    },
+    {
+      "file": "src/wiring.ts",
+      "symbol": "baseMemory",
+      "notes": "MemoryService injected into orchestrator/app"
+    }
   ],
   "unsupported_assumptions": [
-    "No Harmony assignment API exists yet",
-    "Blank child workspaces require explicit prepare",
-    "Generation fencing across services not native"
+    "Harmony /internal/harmony/v1/* endpoints exist in upstream QM",
+    "One QM deployment hosts multiple Harmony tenant cells with isolated assignment state",
+    "UFO can delegate without implementing new service JWT + mTLS verification in QM",
+    "Swarm worker sandboxes include parent repo or assignment artifacts without explicit prepare/stageIn",
+    "Swarm agent API works without an active session-bound run lease",
+    "Run lease semantics equal Harmony task attempt generation fencing",
+    "QM emits outbound Harmony task events to UFO today",
+    "External memory providers fail closed by default (failOpen defaults to true)",
+    "npm test passes on Node 22 without Node 24 native TypeScript execution"
   ]
 }
